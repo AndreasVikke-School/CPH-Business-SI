@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniProject1.ClassLib";
+
+package course;
+
+import "objects.proto";
+import "google/protobuf/empty.proto";
+
+service CourseProto {
+    rpc GetAllCourses (google.protobuf.Empty) returns (AllCoursesReply);
+    rpc GetCourseById (CourseRequest) returns (CourseReply);
+}
+
+message CourseRequest {
+    int32 id = 1;
+}
+
+message CourseReply {
+    int32 id = 1;
+    objects.CourseObj courseObj = 2;
+}
+
+message AllCoursesReply {
+    repeated CourseReply courses = 1;
+}

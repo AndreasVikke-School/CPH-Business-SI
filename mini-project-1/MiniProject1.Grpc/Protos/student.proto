@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniProject1.Grpc";
+
+package student;
+
+import "objects.proto";
+import "google/protobuf/empty.proto";
+
+service StudentProto {
+    rpc GetAllStudents (google.protobuf.Empty) returns (AllStudentsReply);
+    rpc GetStudentById (StudentRequest) returns (StudentReply);
+}
+
+message StudentRequest {
+    int32 id = 1;
+}
+
+message StudentReply {
+    int32 id = 1;
+    objects.StudentObj studentObj = 2;
+}
+
+message AllStudentsReply {
+    repeated StudentReply students = 1;
+}

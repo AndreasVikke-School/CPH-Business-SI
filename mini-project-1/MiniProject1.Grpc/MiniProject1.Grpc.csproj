@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Server" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\student.proto" GrpcServices="Server" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\course.proto" GrpcServices="Server" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\book.proto" GrpcServices="Server" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\room.proto" GrpcServices="Server" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\objects.proto" GrpcServices="Server" ProtoRoot="Protos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.18.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.39.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.40.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SQLServer" Version="5.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MiniProject1.ClassLib\MiniProject1.ClassLib.csproj" />
+    <ProjectReference Include="..\MiniProject1.EntityFramework\MiniProject1.EntityFramework.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniProject1.Grpc";
+
+package Room;
+
+import "objects.proto";
+import "google/protobuf/empty.proto";
+
+service RoomProto {
+    rpc GetAllRooms (google.protobuf.Empty) returns (AllRoomsReply);
+    rpc GetRoomById (RoomRequest) returns (RoomReply);
+}
+
+message RoomRequest {
+    int32 id = 1;
+}
+
+message RoomReply {
+    int32 id = 1;
+    objects.RoomObj RoomObj = 2;
+}
+
+message AllRoomsReply {
+    repeated RoomReply Rooms = 1;
+}

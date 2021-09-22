@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Google.Protobuf" Version="3.18.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.39.0" />
+    <PackageReference Include="Grpc.Net.Client" Version="2.39.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.40.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="System.ServiceModel.Http" Version="4.8.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Protobuf Include="Protos\greet.proto" GrpcServices="Client" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\student.proto" GrpcServices="Client" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\course.proto" GrpcServices="Client" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\book.proto" GrpcServices="Client" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\room.proto" GrpcServices="Client" ProtoRoot="Protos\" />
+    <Protobuf Include="Protos\objects.proto" GrpcServices="Client" ProtoRoot="Protos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.ServiceModel">
+      <HintPath>System.ServiceModel</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

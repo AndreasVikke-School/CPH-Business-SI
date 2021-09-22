@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniProject1.Grpc";
+
+package objects;
+
+message CourseObj {
+    string name = 1;
+    RoomObj room = 2;
+    repeated StudentObj students = 3;
+    repeated BookObj books = 4;
+}
+
+message StudentObj {
+    string name = 1;
+    repeated CourseObj courses = 2;
+}
+
+message BookObj {
+    int32 isbnType = 1;
+    string title = 2;
+    repeated CourseObj courses = 3;
+}
+
+message RoomObj {
+    string capacity = 1;
+    repeated CourseObj courses = 2;
+}

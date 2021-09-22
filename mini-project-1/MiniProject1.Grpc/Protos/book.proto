@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniProject1.Grpc";
+
+package Book;
+
+import "objects.proto";
+import "google/protobuf/empty.proto";
+
+service BookProto {
+    rpc GetAllBooks (google.protobuf.Empty) returns (AllBooksReply);
+    rpc GetBookById (BookRequest) returns (BookReply);
+}
+
+message BookRequest {
+    string isbn = 1;
+    int32 isbnType = 2;
+}
+
+message BookReply {
+    string isbn = 1;
+    objects.BookObj BookObj = 2;
+}
+
+message AllBooksReply {
+    repeated BookReply Books = 1;
+}
