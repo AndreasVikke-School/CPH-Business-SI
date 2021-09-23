@@ -20,13 +20,13 @@ namespace MiniProject1.WebApi.Controllers
         }
 
         [HttpGet("10/{isbn}")]
-        public async Task<bool> GetStudent(int isbn)
+        public async Task<bool> ISBN10Validator(String isbn)
         {
             return await SoapConnector.ISBN10Validator(isbn);
         }
 
         [HttpGet("13/{isbn}")]
-        public async Task<bool> GetStudent(int isbn)
+        public async Task<bool> ISBN13Validator(String isbn)
         {
             return await SoapConnector.ISBN13Validator(isbn);
         }
