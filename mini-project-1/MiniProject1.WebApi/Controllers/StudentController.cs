@@ -30,5 +30,17 @@ namespace MiniProject1.WebApi.Controllers
         {
             return await GrpcClient.GetAll();
         }
+
+        [HttpGet("validateISBN10/{isbn}")]
+        public async Task<bool> GetStudent(int isbn)
+        {
+            return await SoapConnector.ISBN10Validator(isbn);
+        }
+
+        [HttpGet("validateISBN13/{isbn}")]
+        public async Task<bool> GetStudent(int isbn)
+        {
+            return await SoapConnector.ISBN13Validator(isbn);
+        }
     }
 }
