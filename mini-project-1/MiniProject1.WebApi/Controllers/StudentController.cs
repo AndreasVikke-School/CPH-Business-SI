@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using MiniProject1.ClassLib;
+using MiniProject1.ClassLib.Modules;
 
 namespace MiniProject1.WebApi.Controllers
 {
@@ -11,26 +13,22 @@ namespace MiniProject1.WebApi.Controllers
     [Route("/students")]
     public class StudentController : ControllerBase
     {
-        //bare for at kunne få et output
-        private static readonly string[] names = new[]
-        {
-            "Asger", "Vikke", "Martin", "Willi", "Svense"
-        };
-
         private readonly ILogger<StudentController> _logger;
         public StudentController(ILogger<StudentController> logger)
         {
             _logger = logger;
         }
 
-        //test metode
-        [HttpGet("all")]
-        public string GetStudents()
+        [HttpGet("get/{id}")]
+        public async Task<Student> GetStudent(int id)
         {
-            var rng = new Random();
-            int randomPerson = rng.Next(0,4);
-            return names[randomPerson];
+            return await GrpcClient.Get(id);
         }
 
+        [HttpGet("get/all")]
+        public async Task<List<Student>> GetAllStudents()
+        {
+            return await GrpcClient.GetAll();
+        }
     }
 }

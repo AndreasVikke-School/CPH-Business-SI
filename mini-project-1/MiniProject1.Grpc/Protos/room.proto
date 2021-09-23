@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "MiniProject1.Grpc";
+option csharp_namespace = "MiniProject1.Grpc.Protos";
 
 package Room;
 
@@ -22,5 +22,5 @@ message RoomReply {
 }
 
 message AllRoomsReply {
-    repeated RoomReply Rooms = 1;
+    repeated objects.RoomObj Rooms = 1;
 }

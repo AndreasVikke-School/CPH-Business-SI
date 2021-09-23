@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject1.Console", "Min
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject1.Grpc", "MiniProject1.Grpc\MiniProject1.Grpc.csproj", "{AF5E3592-3D4A-49FA-8767-95003FEFC973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject1.EntityFramework", "MiniProject1.EntityFramework\MiniProject1.EntityFramework.csproj", "{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -110,17 +108,5 @@ Global
 		{AF5E3592-3D4A-49FA-8767-95003FEFC973}.Release|x64.Build.0 = Release|Any CPU
 		{AF5E3592-3D4A-49FA-8767-95003FEFC973}.Release|x86.ActiveCfg = Release|Any CPU
 		{AF5E3592-3D4A-49FA-8767-95003FEFC973}.Release|x86.Build.0 = Release|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Debug|x64.Build.0 = Debug|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Debug|x86.Build.0 = Debug|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Release|x64.ActiveCfg = Release|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Release|x64.Build.0 = Release|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Release|x86.ActiveCfg = Release|Any CPU
-		{CFE8EA9B-ADE0-4D10-9B5D-3DB4B6DBA6A5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

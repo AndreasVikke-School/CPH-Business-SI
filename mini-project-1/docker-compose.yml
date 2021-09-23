@@ -1,0 +1,47 @@
+version: "3.8"
+
+x-shared-limit:
+  &mem_limit
+  mem_limit: 512m
+  mem_reservation: 128M
+  cpus: 0.5
+
+networks: 
+  lan:
+
+services:
+  mssql:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+      SA_PASSWORD: "P@ssword123"
+      ACCEPT_EULA: "Y"
+    networks:
+      - lan
+
+  grpc:
+    build: ./
+    <<: *mem_limit
+    depends_on:
+      - mssql
+    command: ["./wait-for-it.sh", "mssql:1433", "--", "dotnet", "run", "--no-launch-profile", "-p", "MiniProject1.Grpc"]
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
+    ports: 
+      - 8001:80
+
+  webapi:
+    build: ./
+    <<: *mem_limit
+    depends_on:
+      - mssql
+    command: ["./wait-for-it.sh", "mssql:1433", "--", "dotnet", "run", "--no-launch-profile", "-p", "MiniProject1.WebApi"]
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
+    ports: 
+      - 8000:80
+
+ 

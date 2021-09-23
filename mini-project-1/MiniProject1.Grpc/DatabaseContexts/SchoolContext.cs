@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using MiniProject1.ClassLib.Modules;
 
-namespace MiniProject1.EntityFramework
+namespace MiniProject1.Grpc.DatabaseContexts
 {
     public class SchoolContext : DbContext
     {
@@ -13,7 +13,7 @@ namespace MiniProject1.EntityFramework
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=127.0.0.1,1433;Database=Master;User Id=SA;Password=P@ssword123");
+            optionsBuilder.UseSqlServer(@"Server=mssql;Database=Master;User Id=SA;Password=P@ssword123");
         }
     }
 }

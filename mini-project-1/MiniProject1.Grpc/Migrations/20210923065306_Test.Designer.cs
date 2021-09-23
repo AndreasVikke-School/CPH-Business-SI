@@ -5,13 +5,13 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MiniProject1.EntityFramework;
+using MiniProject1.Grpc.DatabaseContexts;
 
-namespace MiniProject1.EntityFramework.Migrations
+namespace MiniProject1.Grpc.Migrations
 {
     [DbContext(typeof(SchoolContext))]
-    [Migration("20210922141051_CreateSchoolDB")]
-    partial class CreateSchoolDB
+    [Migration("20210923065306_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -108,9 +108,6 @@ namespace MiniProject1.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Class")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

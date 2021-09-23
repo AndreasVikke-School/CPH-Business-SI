@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using MiniProject1.EntityFramework;
+using MiniProject1.Grpc.DatabaseContexts;
 
-namespace MiniProject1.EntityFramework.Migrations
+namespace MiniProject1.Grpc.Migrations
 {
     [DbContext(typeof(SchoolContext))]
     partial class SchoolContextModelSnapshot : ModelSnapshot
@@ -106,9 +106,6 @@ namespace MiniProject1.EntityFramework.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Class")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

@@ -8,7 +8,7 @@ namespace MiniProject1.Console
     {
         static void Main(string[] args)
         {
-            GrpcClient.Run2().Wait();
+            // GrpcClient.Run2().Wait();
             // Run().Wait();
         }
 

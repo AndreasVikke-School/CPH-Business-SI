@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-option csharp_namespace = "MiniProject1.ClassLib";
+option csharp_namespace = "MiniProject1.ClassLib.Protos";
 
 package Room;
 
@@ -22,5 +22,5 @@ message RoomReply {
 }
 
 message AllRoomsReply {
-    repeated RoomReply Rooms = 1;
+    repeated objects.RoomObj Rooms = 1;
 }

@@ -6,9 +6,10 @@ using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using MiniProject1.ClassLib.Modules;
-using MiniProject1.EntityFramework;
+using MiniProject1.Grpc.DatabaseContexts;
+using MiniProject1.Grpc.Protos;
 
-namespace MiniProject1.Grpc
+namespace MiniProject1.Grpc.Services
 {
     public class StudentService : StudentProto.StudentProtoBase
     {
@@ -26,10 +27,7 @@ namespace MiniProject1.Grpc
                 return Task.FromResult(new StudentReply
                 {
                     Id = result.Id,
-                    StudentObj = new StudentObj
-                    {
-                        Name = result.Name
-                    }
+                    StudentObj = ProtoMapper<Student, StudentObj>.Map(result)
                 });
             }
         }
@@ -41,12 +39,9 @@ namespace MiniProject1.Grpc
                 List<Student> students = dcContext.Students.ToList();
 
                 AllStudentsReply reply = new AllStudentsReply{};
-                students.ForEach(s => reply.Students.Add(new StudentReply{
-                    Id = s.Id,
-                    StudentObj = new StudentObj{
-                        Name = s.Name
-                    }
-                }));
+                students.ForEach(s => reply.Students.Add(
+                    ProtoMapper<Student, StudentObj>.Map(s)
+                ));
 
                 return Task.FromResult(reply);
             }
