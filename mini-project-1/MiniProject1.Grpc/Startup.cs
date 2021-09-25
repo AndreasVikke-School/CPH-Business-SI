@@ -37,6 +37,7 @@ namespace MiniProject1.Grpc
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGrpcService<StudentService>();
+                endpoints.MapGrpcService<CourseService>();
 
                 endpoints.MapGet("/", async context =>
                 {
@@ -51,6 +52,9 @@ namespace MiniProject1.Grpc
                     context.Database.Migrate();
                     context.Students.Add(new Student{
                         Name = "Andreas Vikke"
+                    });
+                    context.Courses.Add(new Course{
+                        Name = "Biology"
                     });
                     context.SaveChanges();
                 }

@@ -10,6 +10,7 @@ import "google/protobuf/empty.proto";
 service RoomProto {
     rpc GetAllRooms (google.protobuf.Empty) returns (AllRoomsReply);
     rpc GetRoomById (RoomRequest) returns (RoomReply);
+    rpc AddRoom (RoomReply) returns (RoomReply);
 }
 
 message RoomRequest {

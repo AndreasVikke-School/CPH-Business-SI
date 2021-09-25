@@ -27,6 +27,6 @@ message BookObj {
 
 message RoomObj {
     int32 id = 1;
-    string capacity = 2;
+    int32 capacity = 2;
     repeated CourseObj courses = 3;
 }
