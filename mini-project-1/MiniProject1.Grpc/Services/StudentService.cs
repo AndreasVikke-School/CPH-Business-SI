@@ -42,8 +42,25 @@ namespace MiniProject1.Grpc.Services
                 students.ForEach(s => reply.Students.Add(
                     ProtoMapper<Student, StudentObj>.Map(s)
                 ));
-
                 return Task.FromResult(reply);
+            }
+        }
+
+        public override Task<StudentReply> AddStudent(StudentReply input, ServerCallContext context) {
+            using (var dbContext = new SchoolContext()) {
+                    Student student = ProtoMapper<StudentObj, Student>.Map(input.StudentObj);
+                    // foreach(CourseObj c in input.StudentObj.Courses) {
+                    //     dbContext.Courses.Add(ProtoMapper<CourseObj, Course>.Map(c));
+                    // }
+
+                    dbContext.Students.Add(student);
+                    dbContext.SaveChanges();
+
+                    return Task.FromResult(new StudentReply {
+                    Id = student.Id,
+                    StudentObj = ProtoMapper<Student, StudentObj>.Map(student)
+                    });
+                
             }
         }
     }

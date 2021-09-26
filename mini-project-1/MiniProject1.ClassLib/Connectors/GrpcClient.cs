@@ -27,7 +27,6 @@ namespace MiniProject1.ClassLib
             using var channel = GrpcChannel.ForAddress("http://grpc:80");
             var client = new StudentProto.StudentProtoClient(channel);
             var reply = await client.GetAllStudentsAsync(new Google.Protobuf.WellKnownTypes.Empty());
-
             List<Student> students = new List<Student>();
             foreach(StudentObj s in reply.Students)
                 students.Add(ProtoMapper<StudentObj, Student>.Map(s));
@@ -42,6 +41,18 @@ namespace MiniProject1.ClassLib
             var reply = await client.GetCourseByIdAsync(
                               new CourseRequest { Id = id });
             return ProtoMapper<CourseObj, Course>.Map(reply.CourseObj);
+        }
+
+        public static async Task<List<Course>> GetAllCourses()
+        {
+            // The port number(5001) must match the port of the gRPC server.
+            using var channel = GrpcChannel.ForAddress("http://grpc:80");
+            var client = new CourseProto.CourseProtoClient(channel);
+            var reply = await client.GetAllCoursesAsync(new Google.Protobuf.WellKnownTypes.Empty());
+            List<Course> courses = new List<Course>();
+            foreach(CourseObj c in reply.Courses)
+                courses.Add(ProtoMapper<CourseObj, Course>.Map(c));
+            return courses;
         }
 
         public static async Task<Course> AddCourse(Course course)
@@ -70,6 +81,21 @@ namespace MiniProject1.ClassLib
             return ProtoMapper<RoomObj, Room>.Map(reply.RoomObj);
         }
         
+        public static async Task<Student> AddStudent(Student student)
+        {
+            // The port number(5001) must match the port of the gRPC server.
+            using var channel = GrpcChannel.ForAddress("http://grpc:80");
+            var client =  new StudentProto.StudentProtoClient(channel);
+            
+            MapperConfiguration config = new MapperConfiguration(cfg =>
+            {
+                cfg.CreateMap<Student, StudentObj>();
+                cfg.CreateMap<Course, CourseObj>();
+            });
+            IMapper iMapper = config.CreateMapper();
+            var reply = await client.AddStudentAsync(new StudentReply {StudentObj = iMapper.Map<Student, StudentObj>(student)});
+            return ProtoMapper<StudentObj, Student>.Map(reply.StudentObj);
+        }
         
     }
 }

@@ -30,5 +30,11 @@ namespace MiniProject1.WebApi.Controllers
         {
             return await GrpcClient.GetAll();
         }
+
+        [HttpPost("add")]
+        public async Task<Student> AddStudent(Student student)
+        {
+            return await GrpcClient.AddStudent(student); 
+        }
     }
 }

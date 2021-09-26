@@ -26,6 +26,12 @@ namespace MiniProject1.WebApi.Controllers
             return await GrpcClient.GetCourse(id);
         }
 
+        [HttpGet("get/all")]
+        public async Task<List<Course>> GetAllCourses()
+        {
+            return await GrpcClient.GetAllCourses();
+        }
+
         [HttpPost("add")]
         public async Task<Course> AddCourse(Course course)
         {

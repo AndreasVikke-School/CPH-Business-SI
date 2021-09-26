@@ -10,6 +10,7 @@ import "google/protobuf/empty.proto";
 service StudentProto {
     rpc GetAllStudents (google.protobuf.Empty) returns (AllStudentsReply);
     rpc GetStudentById (StudentRequest) returns (StudentReply);
+    rpc AddStudent (StudentReply) returns (StudentReply);
 }
 
 message StudentRequest {
