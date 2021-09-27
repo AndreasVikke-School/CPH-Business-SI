@@ -9,7 +9,7 @@ namespace MiniProject1.ClassLib.Modules
     {
         [Key]
         public string ISBN { get; set; }
-        public ISBNType ISBNType { get; set; }
+        public int ISBNType { get; set; }
         public string Title { get; set; }
     }
 }

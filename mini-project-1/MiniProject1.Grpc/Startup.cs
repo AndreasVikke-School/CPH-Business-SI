@@ -50,11 +50,17 @@ namespace MiniProject1.Grpc
                 using (var context = serviceScope.ServiceProvider.GetService<SchoolContext>())
                 {
                     context.Database.Migrate();
-                    context.Students.Add(new Student{
+                    context.Students.Add(new Student
+                    {
                         Name = "Andreas Vikke"
                     });
-                    context.Courses.Add(new Course{
+                    context.Courses.Add(new Course
+                    {
                         Name = "Biology"
+                    });
+                    context.Books.Add(new Book
+                    {
+                        ISBN = "03475"
                     });
                     context.SaveChanges();
                 }

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 option csharp_namespace = "MiniProject1.Grpc.Protos";
 
-package Book;
+package book;
 
 import "objects.proto";
 import "google/protobuf/empty.proto";
@@ -19,9 +19,9 @@ message BookRequest {
 
 message BookReply {
     string isbn = 1;
-    objects.BookObj BookObj = 2;
+    objects.BookObj bookObj = 2;
 }
 
 message AllBooksReply {
-    repeated objects.BookObj Books = 1;
+    repeated objects.BookObj books = 1;
 }
