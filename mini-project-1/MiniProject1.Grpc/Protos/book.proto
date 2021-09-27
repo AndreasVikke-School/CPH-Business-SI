@@ -10,6 +10,7 @@ import "google/protobuf/empty.proto";
 service BookProto {
     rpc GetAllBooks (google.protobuf.Empty) returns (AllBooksReply);
     rpc GetBookById (BookRequest) returns (BookReply);
+    rpc AddBook (BookReply) returns (BookReply);
 }
 
 message BookRequest {

@@ -38,6 +38,7 @@ namespace MiniProject1.Grpc
             {
                 endpoints.MapGrpcService<StudentService>();
                 endpoints.MapGrpcService<CourseService>();
+                endpoints.MapGrpcService<BookService>();
 
                 endpoints.MapGet("/", async context =>
                 {
@@ -60,7 +61,8 @@ namespace MiniProject1.Grpc
                     });
                     context.Books.Add(new Book
                     {
-                        ISBN = "03475"
+                        ISBN = "0-545-01022-5",
+                        Title = "Totally a real book"
                     });
                     context.SaveChanges();
                 }

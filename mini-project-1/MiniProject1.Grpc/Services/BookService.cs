@@ -36,5 +36,45 @@ namespace MiniProject1.Grpc.Services
                 return Task.FromResult(reply);
             }
         }
+
+        public override Task<BookReply> GetBookById(BookRequest request, ServerCallContext context)
+        {
+            using (var dcContext = new SchoolContext())
+            {
+
+                Book result = dcContext.Books.Where(b => b.ISBN == request.Isbn).FirstOrDefault();
+
+                if (result == null)
+                {
+                    throw new RpcException(new Status(StatusCode.PermissionDenied, "ISBN not valid."));
+                }
+
+                return Task.FromResult(new BookReply
+                {
+                    Isbn = result.ISBN,
+                    BookObj = ProtoMapper<Book, BookObj>.Map(result)
+                });
+
+
+            }
+        }
+
+        public override Task<BookReply> AddBook(BookReply input, ServerCallContext context)
+        {
+            using (var dbContext = new SchoolContext())
+            {
+                Book book = ProtoMapper<BookObj, Book>.Map(input.BookObj);
+
+                dbContext.Books.Add(book);
+                dbContext.SaveChanges();
+
+                return Task.FromResult(new BookReply
+                {
+                    Isbn = book.ISBN,
+                    BookObj = ProtoMapper<Book, BookObj>.Map(book)
+                });
+            }
+        }
+
     }
 }

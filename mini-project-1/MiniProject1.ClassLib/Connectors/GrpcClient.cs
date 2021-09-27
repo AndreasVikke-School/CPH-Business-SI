@@ -120,5 +120,25 @@ namespace MiniProject1.ClassLib
             return books;
         }
 
+        public static async Task<Book> AddBook(Book book)
+        {
+            // The port number(5001) must match the port of the gRPC server.
+            using var channel = GrpcChannel.ForAddress("http://grpc:80");
+            var client = new BookProto.BookProtoClient(channel);
+
+            if (await SoapConnector.ISBN10Validator(book.ISBN) == true || await SoapConnector.ISBN13Validator(book.ISBN) == true)
+            {
+                MapperConfiguration config = new MapperConfiguration(cfg =>
+                {
+                    cfg.CreateMap<Book, BookObj>();
+                    cfg.CreateMap<Course, CourseObj>();
+                });
+                IMapper iMapper = config.CreateMapper();
+                var reply = await client.AddBookAsync(new BookReply { BookObj = iMapper.Map<Book, BookObj>(book) });
+                return ProtoMapper<BookObj, Book>.Map(reply.BookObj);
+            }
+            else
+                throw new Exception("ISBN not validated");
+        }
     }
 }
