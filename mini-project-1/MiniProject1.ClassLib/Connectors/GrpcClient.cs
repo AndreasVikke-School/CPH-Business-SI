@@ -40,7 +40,7 @@ namespace MiniProject1.ClassLib
             var client = new CourseProto.CourseProtoClient(channel);
             var reply = await client.GetCourseByIdAsync(
                               new CourseRequest { Id = id });
-            return ProtoMapper<CourseObj, Course>.Map(reply.CourseObj);
+            return ProtoMapper<CourseObj, Course>.MapCourse(reply.CourseObj);
         }
 
         public static async Task<List<Course>> GetAllCourses()
@@ -51,7 +51,7 @@ namespace MiniProject1.ClassLib
             var reply = await client.GetAllCoursesAsync(new Google.Protobuf.WellKnownTypes.Empty());
             List<Course> courses = new List<Course>();
             foreach (CourseObj c in reply.Courses)
-                courses.Add(ProtoMapper<CourseObj, Course>.Map(c));
+                courses.Add(ProtoMapper<CourseObj, Course>.MapCourse(c));
             return courses;
         }
 
@@ -60,16 +60,8 @@ namespace MiniProject1.ClassLib
             // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://grpc:80");
             var client = new CourseProto.CourseProtoClient(channel);
-            MapperConfiguration config = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<Course, CourseObj>();
-                cfg.CreateMap<Room, RoomObj>();
-                cfg.CreateMap<List<Student>, List<StudentObj>>();
-                cfg.CreateMap<List<Book>, List<BookObj>>();
-            });
-            IMapper iMapper = config.CreateMapper();
-            var reply = await client.AddCourseAsync(new CourseReply { CourseObj = iMapper.Map<Course, CourseObj>(course) });
-            return ProtoMapper<CourseObj, Course>.Map(reply.CourseObj);
+            var reply = await client.AddCourseAsync(new CourseReply { CourseObj = ProtoMapper<Course, CourseObj>.MapCourse(course) });
+            return ProtoMapper<CourseObj, Course>.MapCourse(reply.CourseObj);
         }
 
         public static async Task<Room> AddRoom(Room room)
