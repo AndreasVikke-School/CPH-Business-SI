@@ -11,6 +11,5 @@ namespace MiniProject1.ClassLib.Modules
         public string ISBN { get; set; }
         public ISBNType ISBNType { get; set; }
         public string Title { get; set; }
-        public List<Course> courses { get; set; }
     }
 }

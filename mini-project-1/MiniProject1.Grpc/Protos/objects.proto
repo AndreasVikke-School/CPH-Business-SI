@@ -15,18 +15,15 @@ message CourseObj {
 message StudentObj {
     int32 id = 1;
     string name = 2;
-    repeated CourseObj courses = 3;
 }
 
 message BookObj {
     string isbn = 1;
     int32 isbnType = 2;
     string title = 3;
-    repeated CourseObj courses = 4;
 }
 
 message RoomObj {
     int32 id = 1;
     int32 capacity = 2;
-    repeated CourseObj courses = 3;
 }

@@ -7,6 +7,5 @@ namespace MiniProject1.ClassLib.Modules
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public List<Course> courses { get; set; }
     }
 }

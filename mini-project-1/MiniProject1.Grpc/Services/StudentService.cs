@@ -48,19 +48,15 @@ namespace MiniProject1.Grpc.Services
 
         public override Task<StudentReply> AddStudent(StudentReply input, ServerCallContext context) {
             using (var dbContext = new SchoolContext()) {
-                    Student student = ProtoMapper<StudentObj, Student>.Map(input.StudentObj);
-                    // foreach(CourseObj c in input.StudentObj.Courses) {
-                    //     dbContext.Courses.Add(ProtoMapper<CourseObj, Course>.Map(c));
-                    // }
+                Student student = ProtoMapper<StudentObj, Student>.Map(input.StudentObj);
 
-                    dbContext.Students.Add(student);
-                    dbContext.SaveChanges();
+                dbContext.Students.Add(student);
+                dbContext.SaveChanges();
 
-                    return Task.FromResult(new StudentReply {
+                return Task.FromResult(new StudentReply {
                     Id = student.Id,
                     StudentObj = ProtoMapper<Student, StudentObj>.Map(student)
-                    });
-                
+                });
             }
         }
     }
