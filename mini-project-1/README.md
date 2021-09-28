@@ -10,12 +10,12 @@ docker-compose up --build
 Developed by Andreas Zoega Vesterborg Vikke, Asger Hermind Sørensen, Martin Eli Frederiksen og William Sehested Huusfeldt. 
 
 ## Solution specifications
-- Database: MySQL
+- Database: mssql
 - gRPC services: BookService, StudentService, CourseService, RoomService
 - SOAP services: ISBNService
 - WebAPI: RESTful
 
-For our solution we've used gRPC services to communicate with our database. For validation of ISBN we're using a remote SOAP service. Lastly we've used RESTful as our WebAPI with custom endpoints.
+For our solution we've used gRPC services to communicate with our database. For validation of we're using ISBN to call a remote SOAP service. Lastly we've used RESTful as our WebAPI with custom endpoints.
 
 ### Project architecture
 ![image](Architecture.jpg "xArchitecture overview")
