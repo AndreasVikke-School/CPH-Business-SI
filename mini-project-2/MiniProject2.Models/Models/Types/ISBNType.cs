@@ -1,6 +1,6 @@
 using System;
 
-namespace MiniProject1.ClassLib.Models.Types
+namespace MiniProject2.ClassLib.Models.Types
 {
     public enum ISBNType
     {

@@ -1,9 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using MiniProject1.ClassLib.Models.Types;
+using MiniProject2.ClassLib.Models.Types;
 
-namespace MiniProject1.ClassLib.Models
+namespace MiniProject2.ClassLib.Models
 {
     public class Book
     {
