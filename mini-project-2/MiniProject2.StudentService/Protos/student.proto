@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniProject2.StudentService.Protos";
+
+package student;
+
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+service StudentProto {
+    rpc GetAllStudents (google.protobuf.Empty) returns (AllStudentsReply);
+    rpc GetStudentById (google.protobuf.Int64Value) returns (StudentObj);
+    rpc AddStudent (StudentObj) returns (StudentObj);
+}
+
+message AllStudentsReply {
+    repeated StudentObj students = 1;
+}
+
+message StudentObj {
+  int64 id = 1;
+  string name = 2;
+}

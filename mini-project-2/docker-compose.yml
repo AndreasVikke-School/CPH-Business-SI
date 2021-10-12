@@ -1,0 +1,45 @@
+version: "3.8"
+
+networks:
+  lan:
+
+services:
+  mssql:
+    image: mcr.microsoft.com/azure-sql-edge:latest
+    environment:
+      SA_PASSWORD: "P@ssword123"
+      ACCEPT_EULA: "Y"
+    networks:
+      - lan
+
+  mssqlcli:
+    image: mcr.microsoft.com/mssql-tools:latest
+    command: bash
+    networks:
+      - lan
+
+  ef:
+    build: ./
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.EF"
+    networks:
+      - lan 
+
+  webapi:
+    build: ./
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.WebApi"
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
+    ports:
+      - 8000:80
+  
+  studentservice:
+    build: ./
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.StudentService"
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
+    ports:
+      - 8001:80
