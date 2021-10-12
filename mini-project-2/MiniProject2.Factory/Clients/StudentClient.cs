@@ -15,7 +15,7 @@ namespace MiniProject2.Factory.Clients
             var client = new StudentProto.StudentProtoClient(channel);
 
             var t = new Int64Value();
-            t.Value = 1;
+            t.Value = id;
 
             StudentObj reply = await client.GetStudentByIdAsync(t);
             return ProtoMapper<StudentObj, StudentDTO>.Map(reply);

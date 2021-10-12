@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using MiniProject2.Factory;
+using MiniProject2.Factory.DTO;
 
 namespace MiniProject2.WebApi.Controllers
 {
@@ -17,7 +18,7 @@ namespace MiniProject2.WebApi.Controllers
       [HttpGet("get/{id}")]
       public async Task<StudentDTO> GetStudent(int id)
       {
-          return Transformer.getStudentById(id);
+          return await Transformer.getStudentById(id);
       }
   }
 }

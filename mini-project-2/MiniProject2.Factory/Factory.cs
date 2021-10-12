@@ -1,10 +1,13 @@
-﻿namespace MiniProject2.Factory{
+﻿using MiniProject2.Factory.Clients;
+using MiniProject2.Factory.DTO;
+
+namespace MiniProject2.Factory{
 
   public class Transformer
   {
-    public static StudentDTO getStudentById(int id)
+    public static async Task<StudentDTO> getStudentById(int id)
     {
-      throw new NotImplementedException();
+      return await StudentClient.GetStudentByIdAsync(id);
     }
   }
 }
