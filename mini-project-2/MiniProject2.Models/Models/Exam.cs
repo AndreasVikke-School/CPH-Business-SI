@@ -7,6 +7,8 @@ namespace MiniProject2.ClassLib.Models
     {
         public int Id { get; set; }
         public string? Name { get; set; }
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
+        public List<Student>? Students { get; set; }
+        public List<Teacher>? Teachers { get; set; }
     }
 }

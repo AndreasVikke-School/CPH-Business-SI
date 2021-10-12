@@ -1,4 +1,4 @@
 # CPH-Business-SI
 
 
-dotnet ef mmigrations add <name>
+dotnet ef migrations add <name>

@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using MiniProject1.ClassLib.Models;
+using MiniProject2.ClassLib.Models;
 
 namespace MiniProject2.EF.DatabaseContexts
 {
@@ -8,6 +8,9 @@ namespace MiniProject2.EF.DatabaseContexts
     {
         public DbSet<Book> Books { get; set; }
         public DbSet<Student> Students { get; set; }
+        public DbSet<Exam> Exams { get; set; }
+        public DbSet<Grade> Grades { get; set; }
+        public DbSet<Teacher> Teachers { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
