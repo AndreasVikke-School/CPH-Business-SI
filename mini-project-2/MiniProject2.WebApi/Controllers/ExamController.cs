@@ -16,7 +16,7 @@ namespace MiniProject2.WebApi.Controllers
       }
 
       [HttpGet("get/{id}")]
-      public async Task<ExamDTO> GetExam(int id)
+      public async Task<ExamDTO> GetExam(long id)
       {
           return await ExamFactory.getExamById(id);
       }

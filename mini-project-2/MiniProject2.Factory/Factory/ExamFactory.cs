@@ -6,7 +6,7 @@ namespace MiniProject2.Factory{
 
   public class ExamFactory
   {
-    public static async Task<ExamDTO> getExamById(int id)
+    public static async Task<ExamDTO> getExamById(long id)
     {
       return await ExamClient.GetExamByIdAsync(id);
     }

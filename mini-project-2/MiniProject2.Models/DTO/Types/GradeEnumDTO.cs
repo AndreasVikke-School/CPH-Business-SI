@@ -4,7 +4,7 @@ namespace MiniProject2.Factory.DTO.Types
 {
     public enum GradeEnum
     {
-        minusThree = -3,
+        minusThree = 03,
         zero = 0,
         two = 2,
         four = 4,

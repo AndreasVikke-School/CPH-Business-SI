@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MiniProject2.Factory\MiniProject2.Factory.csproj" />
+    <ProjectReference Include="..\MiniProject2.EF\MiniProject2.EF.csproj" />
   </ItemGroup>
 
 </Project>

@@ -22,7 +22,7 @@ namespace MiniProject2.EF.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Book", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Book", b =>
                 {
                     b.Property<string>("ISBN")
                         .HasColumnType("nvarchar(450)");
@@ -38,13 +38,13 @@ namespace MiniProject2.EF.Migrations
                     b.ToTable("Books");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Exam", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Exam", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
@@ -57,22 +57,22 @@ namespace MiniProject2.EF.Migrations
                     b.ToTable("Exams");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Grade", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Grade", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
                     b.Property<int>("ActualGrade")
                         .HasColumnType("int");
 
-                    b.Property<int?>("ExamId")
-                        .HasColumnType("int");
+                    b.Property<long?>("ExamId")
+                        .HasColumnType("bigint");
 
-                    b.Property<int?>("StudentId")
-                        .HasColumnType("int");
+                    b.Property<long?>("StudentId")
+                        .HasColumnType("bigint");
 
                     b.HasKey("Id");
 
@@ -83,16 +83,16 @@ namespace MiniProject2.EF.Migrations
                     b.ToTable("Grades");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Student", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Student", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<int?>("ExamId")
-                        .HasColumnType("int");
+                    b.Property<long?>("ExamId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -104,16 +104,16 @@ namespace MiniProject2.EF.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Teacher", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Teacher", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("bigint");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"), 1L, 1);
 
-                    b.Property<int?>("ExamId")
-                        .HasColumnType("int");
+                    b.Property<long?>("ExamId")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -125,13 +125,13 @@ namespace MiniProject2.EF.Migrations
                     b.ToTable("Teachers");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Grade", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Grade", b =>
                 {
-                    b.HasOne("MiniProject2.ClassLib.Models.Exam", "Exam")
+                    b.HasOne("MiniProject2.Models.Models.Exam", "Exam")
                         .WithMany()
                         .HasForeignKey("ExamId");
 
-                    b.HasOne("MiniProject2.ClassLib.Models.Student", "Student")
+                    b.HasOne("MiniProject2.Models.Models.Student", "Student")
                         .WithMany()
                         .HasForeignKey("StudentId");
 
@@ -140,21 +140,21 @@ namespace MiniProject2.EF.Migrations
                     b.Navigation("Student");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Student", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Student", b =>
                 {
-                    b.HasOne("MiniProject2.ClassLib.Models.Exam", null)
+                    b.HasOne("MiniProject2.Models.Models.Exam", null)
                         .WithMany("Students")
                         .HasForeignKey("ExamId");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Teacher", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Teacher", b =>
                 {
-                    b.HasOne("MiniProject2.ClassLib.Models.Exam", null)
+                    b.HasOne("MiniProject2.Models.Models.Exam", null)
                         .WithMany("Teachers")
                         .HasForeignKey("ExamId");
                 });
 
-            modelBuilder.Entity("MiniProject2.ClassLib.Models.Exam", b =>
+            modelBuilder.Entity("MiniProject2.Models.Models.Exam", b =>
                 {
                     b.Navigation("Students");
 

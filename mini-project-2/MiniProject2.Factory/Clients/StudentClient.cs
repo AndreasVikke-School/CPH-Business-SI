@@ -8,7 +8,7 @@ namespace MiniProject2.Factory.Clients
 {
     public class StudentClient
     {
-        public static async Task<StudentDTO> GetStudentByIdAsync(int id)
+        public static async Task<StudentDTO> GetStudentByIdAsync(long id)
         {
             // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://servicestudent:80");

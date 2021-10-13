@@ -8,7 +8,7 @@ namespace MiniProject2.Factory.Clients
 {
     public class ExamClient
     {
-        public static async Task<ExamDTO> GetExamByIdAsync(int id)
+        public static async Task<ExamDTO> GetExamByIdAsync(long id)
         {
             // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://serviceexam:80");

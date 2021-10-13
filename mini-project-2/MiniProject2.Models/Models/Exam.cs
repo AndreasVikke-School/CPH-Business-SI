@@ -2,7 +2,7 @@ namespace MiniProject2.Models.Models
 {
     public class Exam
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public DateTime Date { get; set; }
         public List<Student> Students { get; set; }

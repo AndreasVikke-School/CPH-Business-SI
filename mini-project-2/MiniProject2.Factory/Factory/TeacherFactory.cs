@@ -6,7 +6,7 @@ namespace MiniProject2.Factory{
 
   public class TeacherFactory
   {
-    public static async Task<TeacherDTO> getTeacherById(int id)
+    public static async Task<TeacherDTO> getTeacherById(long id)
     {
       return await TeacherClient.GetTeacherByIdAsync(id);
     }
