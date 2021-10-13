@@ -11,7 +11,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.AspNetCore" Version="2.32.0" />
+    <PackageReference Include="Google.Protobuf" Version="3.18.0" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.39.0" />
+    <PackageReference Include="Grpc.Tools" Version="2.40.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MiniProject2.Models\MiniProject2.Models.csproj" />
+    <ProjectReference Include="..\MiniProject2.EF\MiniProject2.EF.csproj" />
   </ItemGroup>
 
 </Project>
