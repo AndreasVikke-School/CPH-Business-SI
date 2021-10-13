@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+option csharp_namespace = "MiniProject2.ServiceBook.Protos";
+
+package book;
+
+import "google/protobuf/wrappers.proto";
+
+service BookProto {
+    rpc ISBN13Validator (google.protobuf.StringValue) returns (google.protobuf.BoolValue);
+    rpc ISBN10Validator (google.protobuf.StringValue) returns (google.protobuf.BoolValue);
+}

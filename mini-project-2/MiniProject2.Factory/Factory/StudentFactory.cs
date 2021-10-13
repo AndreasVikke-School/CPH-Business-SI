@@ -1,9 +1,9 @@
-﻿using Google.Protobuf.WellKnownTypes;
-using MiniProject2.Factory.Clients;
+﻿using MiniProject2.Factory.Clients;
 using MiniProject2.Models.DTO;
 using System;
 
-namespace MiniProject2.Factory{
+namespace MiniProject2.Factory
+{
 
   public class StudentFactory
   {
