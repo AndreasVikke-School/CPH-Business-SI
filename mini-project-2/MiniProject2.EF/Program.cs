@@ -15,6 +15,10 @@ namespace MiniProject2.EF
                     {
                         Name = "Andreas Vikke"
                     });
+                // context.Students.Add(new Student
+                //     {
+                //         Name = "Martin Frederiksen"
+                //     });
                 context.SaveChanges();
 
                 Student test = context.Students.Where(x => x.Id == 1).SingleOrDefault();

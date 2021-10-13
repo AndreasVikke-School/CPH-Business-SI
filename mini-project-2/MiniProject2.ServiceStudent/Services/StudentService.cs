@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 using MiniProject2.EF.DatabaseContexts;
 using MiniProject2.ClassLib.Models;
 
-namespace MiniProject2.StudentService
+namespace MiniProject2.ServiceStudent
 {
     public class StudentService : StudentProto.StudentProtoBase
     {

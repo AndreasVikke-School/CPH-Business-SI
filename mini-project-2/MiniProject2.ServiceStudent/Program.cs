@@ -1,4 +1,4 @@
-using MiniProject2.StudentService;
+using MiniProject2.ServiceStudent;
 
 var builder = WebApplication.CreateBuilder(args);
 

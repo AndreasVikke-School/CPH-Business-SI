@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject2.WebApi", "MiniProject2.WebApi\MiniProject2.WebApi.csproj", "{AF2865CA-21CC-4609-BC1B-8F7774CE997E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject2.StudentService", "MiniProject2.StudentService\MiniProject2.StudentService.csproj", "{EE3C0B06-2B9F-413E-91F8-8A1D2135AC9F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject2.ServiceStudent", "MiniProject2.ServiceStudent\MiniProject2.ServiceStudent.csproj", "{EE3C0B06-2B9F-413E-91F8-8A1D2135AC9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MiniProject2.Models", "MiniProject2.Models\MiniProject2.Models.csproj", "{6475363A-2EEB-4067-8820-CA6431EB69B5}"
 EndProject

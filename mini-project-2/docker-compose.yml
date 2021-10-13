@@ -36,7 +36,7 @@ services:
   
   studentservice:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.StudentService"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceStudent"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:

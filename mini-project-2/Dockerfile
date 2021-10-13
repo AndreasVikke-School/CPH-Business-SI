@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . ./
 
-WORKDIR /app/MiniProject2.StudentService
+WORKDIR /app/MiniProject2.ServiceStudent
 RUN dotnet restore
 
 WORKDIR /app/MiniProject2.WebApi

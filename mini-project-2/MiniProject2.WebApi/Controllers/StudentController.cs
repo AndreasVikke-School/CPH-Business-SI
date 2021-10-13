@@ -1,3 +1,4 @@
+using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using MiniProject2.Factory;
 using MiniProject2.Factory.DTO;
@@ -19,6 +20,12 @@ namespace MiniProject2.WebApi.Controllers
       public async Task<StudentDTO> GetStudent(int id)
       {
           return await Transformer.getStudentById(id);
+      }
+
+      [HttpGet("all")]
+      public async Task<List<StudentDTO>> GetStudents(Empty empty)
+      {
+          return await Transformer.getStudents(empty);
       }
   }
 }
