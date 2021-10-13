@@ -1,0 +1,13 @@
+﻿{
+  "profiles": {
+    "MiniProject2.ServiceExam": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5266;https://localhost:7096",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}

@@ -1,0 +1,13 @@
+﻿{
+  "profiles": {
+    "MiniProject2.ServiceTeacher": {
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": false,
+      "applicationUrl": "http://localhost:5080;https://localhost:7111",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
