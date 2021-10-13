@@ -33,10 +33,42 @@ services:
       - lan
     ports:
       - 8000:80
+
+  servicebook:
+    build: ./
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceBook"
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
+
+  serviceexam:
+    build: ./
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceExam"
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
+
+  servicegrade:
+    build: ./
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceGrade"
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
   
-  studentservice:
+  servicestudent:
     build: ./
     command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.StudentService"
+    environment:
+      ASPNETCORE_URLS: "http://*:80"
+    networks:
+      - lan
+
+  serviceteacher:
+    build: ./
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceTeacher"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:
