@@ -43,7 +43,7 @@ namespace MiniProject2.Factory.Clients
             using var channel = GrpcChannel.ForAddress("http://servicestudent:80");
             var client = new StudentProto.StudentProtoClient(channel);
 
-            StudentObj s = client.AddStudent(ProtoMapper<AddStudentDTO, StudentObj>.Map(student));
+            StudentObj s = await client.AddStudentAsync(ProtoMapper<AddStudentDTO, StudentObj>.Map(student));
             
             return ProtoMapper<StudentObj, StudentDTO>.Map(s);
         }
