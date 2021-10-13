@@ -1,0 +1,15 @@
+{
+  "providerId": "Microsoft.Tools.ServiceModel.Svcutil",
+  "version": "2.0.2",
+  "options": {
+    "inputs": [
+      "http://webservices.daehosting.com/services/isbnservice.wso?WSDL"
+    ],
+    "namespaceMappings": [
+      "*, ServiceReference"
+    ],
+    "outputFile": "Reference.cs",
+    "targetFramework": "net5.0",
+    "typeReuseMode": "All"
+  }
+}
