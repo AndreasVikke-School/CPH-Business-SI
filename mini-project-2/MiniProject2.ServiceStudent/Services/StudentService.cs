@@ -1,11 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using MiniProject2.ServiceStudent.Protos;
 using Google.Protobuf.WellKnownTypes;
-using System.Threading.Tasks;
 using Grpc.Core;
-using Microsoft.Extensions.Logging;
 using MiniProject2.EF.DatabaseContexts;
 using MiniProject2.Models.Models;
 using MiniProject2.Models.Managers;

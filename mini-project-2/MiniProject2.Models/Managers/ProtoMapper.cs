@@ -1,4 +1,3 @@
-using System;
 using AutoMapper;
 
 namespace MiniProject2.Models.Managers

@@ -37,7 +37,7 @@ namespace MiniProject2.Factory.Clients
             
             return MappedList;
         }
-        public static async Task<StudentDTO> AddStudentsAsync(AddStudentDTO student)
+        public static async Task<StudentDTO> AddStudentAsync(AddStudentDTO student)
         {
             // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://servicestudent:80");

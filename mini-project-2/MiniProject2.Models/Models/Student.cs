@@ -1,6 +1,3 @@
-using System;
-using System.Collections.Generic;
-
 namespace MiniProject2.Models.Models
 {
     public class Student

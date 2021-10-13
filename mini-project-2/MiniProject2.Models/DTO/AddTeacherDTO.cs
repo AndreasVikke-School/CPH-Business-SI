@@ -1,6 +1,6 @@
 namespace MiniProject2.Models.DTO
 {
-    public class AddStudentDTO {
+    public class AddTeacherDTO {
         public string Name { get; set;}
-    } 
+    }
 }

@@ -4,7 +4,7 @@ using MiniProject2.Models.DTO;
 
 namespace MiniProject2.Factory{
 
-  public class Transformer
+  public class StudentFactory
   {
     public static async Task<StudentDTO> getStudentById(int id)
     {
@@ -18,7 +18,7 @@ namespace MiniProject2.Factory{
 
     public static async Task<StudentDTO> AddStudent(AddStudentDTO student)
     {
-      return await StudentClient.AddStudentsAsync(student);
+      return await StudentClient.AddStudentAsync(student);
     }
   }
 }
