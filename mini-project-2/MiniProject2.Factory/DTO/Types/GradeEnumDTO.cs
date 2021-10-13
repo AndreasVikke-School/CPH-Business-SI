@@ -1,6 +1,6 @@
 using System;
 
-namespace MiniProject2.Models.Models.Types
+namespace MiniProject2.Factory.DTO.Types
 {
     public enum GradeEnum
     {
@@ -11,6 +11,5 @@ namespace MiniProject2.Models.Models.Types
         seven = 7,
         ten = 10,
         twelve = 12
-
     }
 }

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MiniProject2.ClassLib.Models
+namespace MiniProject2.Models.Models
 {
     public class Exam
     {

@@ -41,5 +41,3 @@ services:
       ASPNETCORE_URLS: "http://*:80"
     networks:
       - lan
-    ports:
-      - 8001:80

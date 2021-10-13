@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
-using MiniProject2.ClassLib.Models;
+using MiniProject2.Models.Models;
 
 namespace MiniProject2.EF.DatabaseContexts
 {

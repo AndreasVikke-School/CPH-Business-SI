@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using MiniProject2.EF.DatabaseContexts;
-using MiniProject2.ClassLib.Models;
+using MiniProject2.Models.Models;
 
 namespace MiniProject2.StudentService
 {

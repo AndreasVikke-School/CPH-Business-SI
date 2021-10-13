@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using MiniProject2.ClassLib.Models;
+using MiniProject2.Models.Models;
 using MiniProject2.EF.DatabaseContexts;
 
 namespace MiniProject2.EF
