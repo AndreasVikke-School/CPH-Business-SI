@@ -20,13 +20,13 @@ services:
 
   ef:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.EF"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile --project MiniProject2.EF"
     networks:
       - lan 
 
   webapi:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.WebApi"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile --project MiniProject2.WebApi"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:
@@ -36,7 +36,7 @@ services:
 
   servicebook:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceBook"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile --project MiniProject2.ServiceBook"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:
@@ -44,7 +44,7 @@ services:
 
   serviceexam:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceExam"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile --project MiniProject2.ServiceExam"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:
@@ -52,7 +52,7 @@ services:
 
   servicegrade:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceGrade"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile --project MiniProject2.ServiceGrade"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:
@@ -60,7 +60,7 @@ services:
   
   servicestudent:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceStudent"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile --project MiniProject2.ServiceStudent"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:
@@ -68,7 +68,7 @@ services:
 
   serviceteacher:
     build: ./
-    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile -p MiniProject2.ServiceTeacher"
+    command: "./wait-for-it.sh mssql:1433 -- dotnet run --no-launch-profile --project MiniProject2.ServiceTeacher"
     environment:
       ASPNETCORE_URLS: "http://*:80"
     networks:
