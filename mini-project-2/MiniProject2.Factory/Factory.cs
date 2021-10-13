@@ -1,6 +1,6 @@
 ﻿using Google.Protobuf.WellKnownTypes;
 using MiniProject2.Factory.Clients;
-using MiniProject2.Factory.DTO;
+using MiniProject2.Models.DTO;
 
 namespace MiniProject2.Factory{
 
@@ -11,9 +11,14 @@ namespace MiniProject2.Factory{
       return await StudentClient.GetStudentByIdAsync(id);
     }
 
-    public static async Task<List<StudentDTO>> getStudents(Empty empty)
+    public static async Task<List<StudentDTO>> getStudents()
     {
-      return await StudentClient.GetStudentsAsync(empty);
+      return await StudentClient.GetStudentsAsync();
+    }
+
+    public static async Task<StudentDTO> AddStudent(AddStudentDTO student)
+    {
+      return await StudentClient.AddStudentsAsync(student);
     }
   }
 }

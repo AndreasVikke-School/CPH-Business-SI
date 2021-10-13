@@ -1,7 +1,8 @@
 using Google.Protobuf.WellKnownTypes;
 using Microsoft.AspNetCore.Mvc;
 using MiniProject2.Factory;
-using MiniProject2.Factory.DTO;
+using MiniProject2.Models.DTO;
+using MiniProject2.Models.Models;
 
 namespace MiniProject2.WebApi.Controllers
 {
@@ -23,9 +24,15 @@ namespace MiniProject2.WebApi.Controllers
       }
 
       [HttpGet("all")]
-      public async Task<List<StudentDTO>> GetStudents(Empty empty)
+      public async Task<List<StudentDTO>> GetStudents()
       {
-          return await Transformer.getStudents(empty);
+          return await Transformer.getStudents();
       }
+      [HttpPost("add")]
+      public async Task<StudentDTO> AddStudent(AddStudentDTO student)
+      {
+          return await Transformer.AddStudent(student);
+      }
+
   }
 }

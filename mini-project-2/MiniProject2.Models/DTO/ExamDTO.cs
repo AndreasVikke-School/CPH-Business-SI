@@ -1,6 +1,6 @@
 using System;
 
-namespace MiniProject2.Factory.DTO
+namespace MiniProject2.Models.DTO
 {
     public class ExamDTO {
         public int Id { get; set;}

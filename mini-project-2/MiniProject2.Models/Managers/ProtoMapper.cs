@@ -1,7 +1,7 @@
 using System;
 using AutoMapper;
 
-namespace MiniProject2.Factory.Managers
+namespace MiniProject2.Models.Managers
 {
     public class ProtoMapper<T, E>
     {

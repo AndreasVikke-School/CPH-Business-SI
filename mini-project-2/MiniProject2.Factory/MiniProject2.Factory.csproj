@@ -6,7 +6,6 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="Google.Protobuf" Version="3.18.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.39.0" />
     <PackageReference Include="Grpc.Tools" Version="2.40.0" />
@@ -14,6 +13,10 @@
 
   <ItemGroup>
     <Protobuf Include="Protos\student.proto" GrpcServices="Client" ProtoRoot="Protos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\MiniProject2.Models\MiniProject2.Models.csproj" />
   </ItemGroup>
 
 </Project>

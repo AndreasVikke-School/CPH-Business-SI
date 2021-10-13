@@ -1,6 +1,6 @@
 using MiniProject2.Factory.DTO.Types;
 
-namespace MiniProject2.Factory.DTO
+namespace MiniProject2.Models.DTO
 {
     public class Grade
     {

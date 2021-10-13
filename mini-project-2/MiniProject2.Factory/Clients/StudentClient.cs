@@ -1,7 +1,7 @@
 using Google.Protobuf.WellKnownTypes;
 using Grpc.Net.Client;
-using MiniProject2.Factory.DTO;
-using MiniProject2.Factory.Managers;
+using MiniProject2.Models.DTO;
+using MiniProject2.Models.Managers;
 using MiniProject2.Factory.Protos;
 
 namespace MiniProject2.Factory.Clients
@@ -11,7 +11,7 @@ namespace MiniProject2.Factory.Clients
         public static async Task<StudentDTO> GetStudentByIdAsync(int id)
         {
             // The port number(5001) must match the port of the gRPC server.
-            using var channel = GrpcChannel.ForAddress("http://studentservice:80");
+            using var channel = GrpcChannel.ForAddress("http://servicestudent:80");
             var client = new StudentProto.StudentProtoClient(channel);
 
             var t = new Int64Value();
@@ -21,13 +21,13 @@ namespace MiniProject2.Factory.Clients
             return ProtoMapper<StudentObj, StudentDTO>.Map(reply);
         }
 
-        public static async Task<List<StudentDTO>> GetStudentsAsync(Empty empty)
+        public static async Task<List<StudentDTO>> GetStudentsAsync()
         {
             // The port number(5001) must match the port of the gRPC server.
-            using var channel = GrpcChannel.ForAddress("http://studentservice:80");
+            using var channel = GrpcChannel.ForAddress("http://servicestudent:80");
             var client = new StudentProto.StudentProtoClient(channel);
 
-            AllStudentsReply reply = await client.GetAllStudentsAsync(empty);
+            AllStudentsReply reply = await client.GetAllStudentsAsync(new Empty());
             List<StudentDTO> MappedList = new List<StudentDTO>();
 
             foreach (var student in reply.Students)
@@ -36,6 +36,16 @@ namespace MiniProject2.Factory.Clients
             }
             
             return MappedList;
+        }
+        public static async Task<StudentDTO> AddStudentsAsync(AddStudentDTO student)
+        {
+            // The port number(5001) must match the port of the gRPC server.
+            using var channel = GrpcChannel.ForAddress("http://servicestudent:80");
+            var client = new StudentProto.StudentProtoClient(channel);
+
+            StudentObj s = client.AddStudent(ProtoMapper<AddStudentDTO, StudentObj>.Map(student));
+            
+            return ProtoMapper<StudentObj, StudentDTO>.Map(s);
         }
     }
 }
