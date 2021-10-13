@@ -8,8 +8,8 @@ namespace MiniProject2.ClassLib.Models
     public class Book
     {
         [Key]
-        public string? ISBN { get; set; }
+        public string ISBN { get; set; }
         public ISBNType ISBNType { get; set; }
-        public string? Title { get; set; }
+        public string Title { get; set; }
     }
 }
