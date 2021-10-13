@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using MiniProject2.StudentService.Protos;
+using MiniProject2.ServiceStudent.Protos;
 using Google.Protobuf.WellKnownTypes;
 using System.Threading.Tasks;
 using Grpc.Core;
