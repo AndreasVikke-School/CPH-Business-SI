@@ -11,7 +11,7 @@ docker-compose up
 Developed by Andreas Zoega Vesterborg Vikke, Asger Hermind Sørensen, Martin Eli Frederiksen og William Sehested Huusfeldt. 
 
 
-### Project architecture
+## Project architecture
 ```GC: Grpc Client | GS: Grpc Server | MS: MicroService | S: Service | EF: EntityFramework```
 ![image](Architecture.jpg "Architecture overview")
 
