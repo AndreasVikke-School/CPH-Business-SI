@@ -5,6 +5,7 @@ namespace MiniProject2.Models.DTO
     {
         public long StudentId { get; set; }
         public long ExamId { get; set; }
-        public GradeEnum ActualGrade { get; set; }
+        // public GradeEnum ActualGrade { get; set; }
+        public int ActualGrade { get; set; }
     }
 }

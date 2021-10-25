@@ -12,22 +12,15 @@ service GradeProto {
     rpc GetAllGrades (google.protobuf.Empty) returns (AllGradesReply);
     rpc GetGradeById (google.protobuf.Int64Value) returns (GradeObj);
     rpc AddGrade (GradeObj) returns (GradeObj);
+    rpc GetPassedStudents (google.protobuf.Empty) returns (AllGradesReply);
+    rpc GetFailedStudentsAmmount (google.protobuf.Empty) returns (google.protobuf.Int64Value);
 }
 
 message GradeObj {
   int64 id = 1;
   int64 studentId = 2;
   int64 examId = 3;
-  enum GradeEnum {
-    zero = 0;
-    two = 2;
-    four = 4;
-    seven = 7;
-    ten = 10;
-    twelve = 12;
-    minusThree = 03;
-  }
-  GradeEnum grade = 4;
+  int32 ActualGrade = 4;
 
 }
 

@@ -12,18 +12,44 @@ namespace MiniProject2.Factory.Factory
             GradeDTO grade = await GradeClient.GetGradeByIdAsync(id);
             grade.Student = await StudentClient.GetStudentByIdAsync(grade.Student.Id);
             grade.Exam = await ExamClient.GetExamByIdAsync(grade.Exam.Id);
-            return grade; 
+            return grade;
         }
 
         public static async Task<List<GradeDTO>> getAllGrades()
         {
-            return await GradeClient.GetGradesAsync();
+            List<GradeDTO> grades = await GradeClient.GetGradesAsync();
+            foreach (var student in grades)
+            {
+                student.Student = await StudentClient.GetStudentByIdAsync(student.Student.Id);
+            }
+            foreach (var exam in grades)
+            {
+                exam.Exam = await ExamClient.GetExamByIdAsync(exam.Exam.Id);
+            }
+            return grades;
         }
         public static async Task<GradeDTO> AddGradeToStudent(AddGradeDTO grade)
         {
-            // StudentDTO student = StudentClient.GetStudentByIdAsync(grade.studentId);
-            // ExamDTO exam = ExamClient.GetExamByIdAsync(grade.examId);
             return await GradeClient.AddGradeToStudentAsync(grade);
+        }
+
+        public static async Task<List<GradeDTO>> getPassedStudents()
+        {
+            List<GradeDTO> grades = await GradeClient.getPassedStudentsAsync();
+            foreach (var student in grades)
+            {
+                student.Student = await StudentClient.GetStudentByIdAsync(student.Student.Id);
+            }
+            foreach (var exam in grades)
+            {
+                exam.Exam = await ExamClient.GetExamByIdAsync(exam.Exam.Id);
+            }
+            return grades;
+        }
+
+        public static async Task<long> getFailedStudents()
+        {
+            return await GradeClient.getFailedStudentsAsync();
         }
     }
 }
