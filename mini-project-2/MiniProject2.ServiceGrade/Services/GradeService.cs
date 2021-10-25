@@ -63,46 +63,39 @@ namespace MiniProject2.ServiceGrade.Services
             }
         }
 
-        public override Task<AllGradesReply> GetPassedStudents(Empty empty, ServerCallContext context)
+        public override Task<AllGradesReply> GetPassedStudents(Int64Value examId, ServerCallContext context)
         {
             using (var dbContext = new SchoolContext())
             {
-                List<Grade> grades = dbContext.Grades.ToList();
+                List<Grade> grades = dbContext.Grades
+                    .Where(x => x.Exam.Id == examId.Value)
+                    .Where(x => x.ActualGrade >= 2)
+                    .Include(x => x.Student)
+                    .Include(x => x.Exam)
+                    .ToList();
+                    
                 AllGradesReply reply = new AllGradesReply { };
                 grades.ForEach(s =>
                 {
-                    if (s.ActualGrade >= 2)
-                    {
-                        Grade grade = dbContext.Grades.Where(x => x.Id == s.Id)
-                            .Include(x => x.Student)
-                            .Include(x => x.Exam)
-                            .Single();
-                        GradeObj go = ProtoMapper<Grade, GradeObj>.Map(grade);
-                        go.StudentId = grade.Student.Id;
-                        go.ExamId = grade.Exam.Id;
-                        reply.Grades.Add(go);
-                    }
+                    GradeObj go = ProtoMapper<Grade, GradeObj>.Map(s);
+                    go.StudentId = s.Student.Id;
+                    go.ExamId = s.Exam.Id;
+                    reply.Grades.Add(go);
                 });
                 return Task.FromResult(reply);
             }
         }
 
-        public override Task<Int64Value> GetFailedStudentsAmmount(Empty empty, ServerCallContext context)
+        public override Task<Int64Value> GetFailedStudentsAmmount(Int64Value examId, ServerCallContext context)
         {
             using (var dbContext = new SchoolContext())
             {
-                List<Grade> grades = dbContext.Grades.ToList();
-                long failed = 0;
-                var failedAmmount = new Int64Value();
-                grades.ForEach(s =>
-                {
-                    if (s.ActualGrade <= 2)
-                    {
-                        failed ++;
-                    }
-                });
-                failedAmmount.Value = failed;
-                return Task.FromResult(failedAmmount);
+                int failed = dbContext.Grades
+                    .Where(x => x.Exam.Id == examId.Value)
+                    .Where(x => x.ActualGrade < 2)
+                    .Count();
+
+                return Task.FromResult(new Int64Value() { Value = failed });
             }
         }
     }

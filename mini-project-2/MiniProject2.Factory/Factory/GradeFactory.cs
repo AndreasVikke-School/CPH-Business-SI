@@ -33,9 +33,9 @@ namespace MiniProject2.Factory.Factory
             return await GradeClient.AddGradeToStudentAsync(grade);
         }
 
-        public static async Task<List<GradeDTO>> getPassedStudents()
+        public static async Task<List<GradeDTO>> getPassedStudents(int examId)
         {
-            List<GradeDTO> grades = await GradeClient.getPassedStudentsAsync();
+            List<GradeDTO> grades = await GradeClient.getPassedStudentsAsync(examId);
             foreach (var student in grades)
             {
                 student.Student = await StudentClient.GetStudentByIdAsync(student.Student.Id);
@@ -47,9 +47,9 @@ namespace MiniProject2.Factory.Factory
             return grades;
         }
 
-        public static async Task<long> getFailedStudents()
+        public static async Task<long> getFailedStudents(int examId)
         {
-            return await GradeClient.getFailedStudentsAsync();
+            return await GradeClient.getFailedStudentsAsync(examId);
         }
     }
 }

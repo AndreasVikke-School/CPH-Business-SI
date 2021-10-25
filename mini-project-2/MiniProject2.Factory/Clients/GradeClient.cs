@@ -51,13 +51,13 @@ namespace MiniProject2.Factory.Clients
             return ProtoMapper<GradeObj, GradeDTO>.Map(s);
         }
 
-        public static async Task<List<GradeDTO>> getPassedStudentsAsync()
+        public static async Task<List<GradeDTO>> getPassedStudentsAsync(int examId)
         {
             // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://servicegrade:80");
             var client = new GradeProto.GradeProtoClient(channel);
 
-            AllGradesReply reply = await client.GetPassedStudentsAsync(new Empty());
+            AllGradesReply reply = await client.GetPassedStudentsAsync(new Int64Value() { Value = examId });
             List<GradeDTO> MappedList = new List<GradeDTO>();
 
             foreach (var grade in reply.Grades)
@@ -71,13 +71,13 @@ namespace MiniProject2.Factory.Clients
             return MappedList;
         }
 
-        public static async Task<long> getFailedStudentsAsync()
+        public static async Task<long> getFailedStudentsAsync(int examId)
         {
             // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://servicegrade:80");
             var client = new GradeProto.GradeProtoClient(channel);
 
-            Int64Value reply = await client.GetFailedStudentsAmmountAsync(new Empty());
+            Int64Value reply = await client.GetFailedStudentsAmmountAsync(new Int64Value() { Value = examId });
             long ammount = reply.Value;
             return ammount;
         }

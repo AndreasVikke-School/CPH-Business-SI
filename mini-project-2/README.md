@@ -6,7 +6,6 @@ docker-compose up
 (Will take some time, be patient)
 ```
 
-
 ## The team
 
 Developed by Andreas Zoega Vesterborg Vikke, Asger Hermind Sørensen, Martin Eli Frederiksen og William Sehested Huusfeldt. 

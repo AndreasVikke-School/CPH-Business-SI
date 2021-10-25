@@ -22,13 +22,13 @@ namespace MiniProject2.EF
         };
         static List<Grade> grades = new List<Grade>(){
             new Grade() { Student = students[0], Exam = exams[0], ActualGrade = 12 },
-            new Grade() { Student = students[1], Exam = exams[0], ActualGrade = 12 },
-            new Grade() { Student = students[2], Exam = exams[0], ActualGrade = 12 },
-            new Grade() { Student = students[3], Exam = exams[0], ActualGrade = 12 },
+            new Grade() { Student = students[1], Exam = exams[0], ActualGrade = 10 },
+            new Grade() { Student = students[2], Exam = exams[0], ActualGrade = -3 },
+            new Grade() { Student = students[3], Exam = exams[0], ActualGrade = 0 },
             new Grade() { Student = students[0], Exam = exams[1], ActualGrade = 12 },
-            new Grade() { Student = students[1], Exam = exams[1], ActualGrade = 12 },
-            new Grade() { Student = students[2], Exam = exams[1], ActualGrade = 12 },
-            new Grade() { Student = students[3], Exam = exams[1], ActualGrade = 12 }
+            new Grade() { Student = students[1], Exam = exams[1], ActualGrade = 7 },
+            new Grade() { Student = students[2], Exam = exams[1], ActualGrade = 0 },
+            new Grade() { Student = students[3], Exam = exams[1], ActualGrade = -3 }
         };
 
 

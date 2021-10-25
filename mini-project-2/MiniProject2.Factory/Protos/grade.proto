@@ -8,12 +8,11 @@ import "google/protobuf/wrappers.proto";
 import "google/protobuf/empty.proto";
 
 service GradeProto {
-    // rpc GetGradeByStudentId (google.protobuf.Int64Value) returns (GradeObj);
-    rpc GetAllGrades (google.protobuf.Empty) returns (AllGradesReply);
-    rpc GetGradeById (google.protobuf.Int64Value) returns (GradeObj);
-    rpc AddGrade (GradeObj) returns (GradeObj);
-    rpc GetPassedStudents (google.protobuf.Empty) returns (AllGradesReply);
-    rpc GetFailedStudentsAmmount (google.protobuf.Empty) returns (google.protobuf.Int64Value);
+  rpc GetAllGrades (google.protobuf.Empty) returns (AllGradesReply);
+  rpc GetGradeById (google.protobuf.Int64Value) returns (GradeObj);
+  rpc AddGrade (GradeObj) returns (GradeObj);
+  rpc GetPassedStudents (google.protobuf.Int64Value) returns (AllGradesReply);
+  rpc GetFailedStudentsAmmount (google.protobuf.Int64Value) returns (google.protobuf.Int64Value);
 }
 
 message GradeObj {
