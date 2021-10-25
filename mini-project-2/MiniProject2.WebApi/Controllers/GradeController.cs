@@ -38,5 +38,17 @@ namespace MiniProject2.WebApi.Controllers
             return await GradeFactory.AddGradeToStudent(grade);
         }
 
+        [HttpGet("passed")]
+        public async Task<List<GradeDTO>> getPassedStudents()
+        {
+            return await GradeFactory.getPassedStudents();
+        }
+
+        [HttpGet("failed")]
+        public async Task<long> GetFailedStudents()
+        {
+            return await GradeFactory.getFailedStudents();
+        }
+
     }
 }

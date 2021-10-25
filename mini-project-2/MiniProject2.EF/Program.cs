@@ -21,14 +21,14 @@ namespace MiniProject2.EF
             new Exam() { Name = "System Integration", Date = new DateTime(2021, 12, 20), Teachers = teachers, Students = students}
         };
         static List<Grade> grades = new List<Grade>(){
-            new Grade() { Student = students[0], Exam = exams[0], ActualGrade = GradeEnum.twelve },
-            new Grade() { Student = students[1], Exam = exams[0], ActualGrade = GradeEnum.twelve },
-            new Grade() { Student = students[2], Exam = exams[0], ActualGrade = GradeEnum.twelve },
-            new Grade() { Student = students[3], Exam = exams[0], ActualGrade = GradeEnum.twelve },
-            new Grade() { Student = students[0], Exam = exams[1], ActualGrade = GradeEnum.twelve },
-            new Grade() { Student = students[1], Exam = exams[1], ActualGrade = GradeEnum.twelve },
-            new Grade() { Student = students[2], Exam = exams[1], ActualGrade = GradeEnum.twelve },
-            new Grade() { Student = students[3], Exam = exams[1], ActualGrade = GradeEnum.twelve }
+            new Grade() { Student = students[0], Exam = exams[0], ActualGrade = 12 },
+            new Grade() { Student = students[1], Exam = exams[0], ActualGrade = 12 },
+            new Grade() { Student = students[2], Exam = exams[0], ActualGrade = 12 },
+            new Grade() { Student = students[3], Exam = exams[0], ActualGrade = 12 },
+            new Grade() { Student = students[0], Exam = exams[1], ActualGrade = 12 },
+            new Grade() { Student = students[1], Exam = exams[1], ActualGrade = 12 },
+            new Grade() { Student = students[2], Exam = exams[1], ActualGrade = 12 },
+            new Grade() { Student = students[3], Exam = exams[1], ActualGrade = 12 }
         };
 
 
