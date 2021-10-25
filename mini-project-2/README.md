@@ -12,6 +12,7 @@ Developed by Andreas Zoega Vesterborg Vikke, Asger Hermind Sørensen, Martin Eli
 
 
 ### Project architecture
+```GC: Grpc Client | GS: Grpc Server | MS: MicroService | S: Service | EF: EntityFramework```
 ![image](Architecture.jpg "Architecture overview")
 
 
