@@ -2,7 +2,7 @@
 
 ## How to run
 ```
-docker-compose up --build
+docker-compose up
 ```
 
 ## The team
@@ -18,7 +18,7 @@ Developed by Andreas Zoega Vesterborg Vikke, Asger Hermind Sørensen, Martin Eli
 For our solution we've used gRPC services to communicate with our database. For validation of we're using ISBN to call a remote SOAP service. Lastly we've used RESTful as our WebAPI with custom endpoints.
 
 ### Project architecture
-![image](Architecture.jpg "xArchitecture overview")
+![image](Architecture.jpg "Architecture overview")
 
 
 ## WebAPI & endpoints: 

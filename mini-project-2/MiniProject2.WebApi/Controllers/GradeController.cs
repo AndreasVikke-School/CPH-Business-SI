@@ -19,19 +19,18 @@ namespace MiniProject2.WebApi.Controllers
         {
             _logger = logger;
         }
-
-        [HttpGet("all")]
-        public async Task<List<GradeDTO>> GetAllGrades()
-        {
-            return await GradeFactory.getAllGrades();
-        }
-
+        
         [HttpGet("get/{id}")]
         public async Task<GradeDTO> GetGrade(long id)
         {
             return await GradeFactory.getGradeById(id);
         }
 
+        [HttpGet("all")]
+        public async Task<List<GradeDTO>> GetAllGrades()
+        {
+            return await GradeFactory.getAllGrades();
+        }
 
         [HttpPost("add")]
         public async Task<GradeDTO> AddGradeToStudent(AddGradeDTO grade)

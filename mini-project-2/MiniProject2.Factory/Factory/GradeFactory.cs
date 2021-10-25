@@ -21,8 +21,6 @@ namespace MiniProject2.Factory.Factory
         }
         public static async Task<GradeDTO> AddGradeToStudent(AddGradeDTO grade)
         {
-            // StudentDTO student = StudentClient.GetStudentByIdAsync(grade.studentId);
-            // ExamDTO exam = ExamClient.GetExamByIdAsync(grade.examId);
             return await GradeClient.AddGradeToStudentAsync(grade);
         }
     }

@@ -2,7 +2,7 @@ using System;
 
 namespace MiniProject2.Factory.DTO.Types
 {
-    public enum GradeEnum
+    public enum GradeEnumDTO
     {
         minusThree = 03,
         zero = 0,

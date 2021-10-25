@@ -10,20 +10,15 @@ namespace MiniProject2.Factory.Clients
     {
         public static async Task<StudentDTO> GetStudentByIdAsync(long id)
         {
-            // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://servicestudent:80");
             var client = new StudentProto.StudentProtoClient(channel);
 
-            var t = new Int64Value();
-            t.Value = id;
-
-            StudentObj reply = await client.GetStudentByIdAsync(t);
+            StudentObj reply = await client.GetStudentByIdAsync(new Int64Value() { Value = id });
             return ProtoMapper<StudentObj, StudentDTO>.Map(reply);
         }
 
         public static async Task<List<StudentDTO>> GetStudentsAsync()
         {
-            // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://servicestudent:80");
             var client = new StudentProto.StudentProtoClient(channel);
 
@@ -39,7 +34,6 @@ namespace MiniProject2.Factory.Clients
         }
         public static async Task<StudentDTO> AddStudentAsync(AddStudentDTO student)
         {
-            // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://servicestudent:80");
             var client = new StudentProto.StudentProtoClient(channel);
 

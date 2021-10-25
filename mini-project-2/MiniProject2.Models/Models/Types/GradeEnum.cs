@@ -4,7 +4,7 @@ namespace MiniProject2.Models.Models.Types
 {
     public enum GradeEnum
     {
-        minusThree = 03,
+        minusThree = 3,
         zero = 0,
         two = 2,
         four = 4,

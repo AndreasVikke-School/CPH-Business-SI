@@ -10,20 +10,15 @@ namespace MiniProject2.Factory.Clients
     {
         public static async Task<ExamDTO> GetExamByIdAsync(long id)
         {
-            // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://serviceexam:80");
             var client = new ExamProto.ExamProtoClient(channel);
 
-            var t = new Int64Value();
-            t.Value = id;
-
-            ExamObj reply = await client.GetExamByIdAsync(t);
+            ExamObj reply = await client.GetExamByIdAsync(new Int64Value() { Value = id });
             return ProtoMapper<ExamObj, ExamDTO>.Map(reply);
         }
 
         public static async Task<List<ExamDTO>> GetExamsAsync()
         {
-            // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://serviceexam:80");
             var client = new ExamProto.ExamProtoClient(channel);
 
@@ -39,7 +34,6 @@ namespace MiniProject2.Factory.Clients
         }
         public static async Task<ExamDTO> AddExamAsync(AddExamDTO exam)
         {
-            // The port number(5001) must match the port of the gRPC server.
             using var channel = GrpcChannel.ForAddress("http://serviceexam:80");
             var client = new ExamProto.ExamProtoClient(channel);
 
