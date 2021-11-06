@@ -5,7 +5,7 @@ option csharp_namespace = "MiniProject2.Factory.Protos";
 package exam;
 import "google/protobuf/wrappers.proto";
 import "google/protobuf/empty.proto";
-// import "google/protobuf/timestamp.proto";
+import "google/protobuf/timestamp.proto";
 
 // The greeting service definition.
 service ExamProto {
@@ -19,7 +19,8 @@ message AllExamsReply {
 }
 
 message ExamObj {
-  int64 id = 1;
-  string name = 2;
-  // google.protobuf.Timestamp date = 3;
+  int64 Id = 1;
+  string Name = 2;
+  google.protobuf.Timestamp Date = 3;
+  repeated int64 StudentIds = 4;
 }
