@@ -9,18 +9,14 @@ networks:
         - subnet: 10.5.0.0/16
           ip_range: 10.5.0.0/24
           gateway: 10.5.0.1
-          aux_addresses:
-            kafka: 10.5.0.2
-            zookeeper: 10.5.0.3
-            rabbitmq: 10.5.0.4
-            api: 10.5.0.5
 services:
   # ==== KAFKA SETUP ====
   zookeeper:
     image: bitnami/zookeeper:latest
     container_name: project3-zookeeper
     networks:
-      - project3
+      project3:
+        ipv4_address: 10.5.0.2
     ports:
       - 2181:2181
     environment:
@@ -30,7 +26,8 @@ services:
     image: bitnami/kafka:2.5.0
     container_name: project3-kafka
     networks:
-      - project3
+      project3:
+        ipv4_address: 10.5.0.3
     ports:
       - 9092:9092
     environment:
@@ -46,7 +43,8 @@ services:
     image: confluentinc/cp-kafka:6.1.1
     container_name: project3-init-kafka
     networks:
-      - project3
+      project3:
+        ipv4_address: 10.5.0.4
     depends_on:
       - kafka
     entrypoint: [ '/bin/sh', '-c' ]
@@ -56,8 +54,8 @@ services:
       kafka-topics --bootstrap-server kafka:9092 --list
 
       echo -e 'Creating kafka topics'
-      kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic bank-request --replication-factor 1 --partitions 1
-      kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic bank-reply --replication-factor 1 --partitions 1
+      kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic loan-request --replication-factor 1 --partitions 1
+      kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic loan-reply --replication-factor 1 --partitions 1
       kafka-topics --bootstrap-server kafka:9092 --create --if-not-exists --topic loan-email --replication-factor 1 --partitions 1
 
       echo -e 'Successfully created the following topics:'
@@ -70,7 +68,8 @@ services:
     image: rabbitmq:3-management-alpine
     container_name: project3-rabbitmq
     networks:
-        - project3
+      project3:
+        ipv4_address: 10.5.0.5
     ports:
         - 5672:5672
         - 15672:15672
@@ -82,12 +81,71 @@ services:
         - ./rabbitmq/rabbitmq.config:/etc/rabbitmq/rabbitmq.config:ro
   # ==== RABBITMQ SETUP END ====
 
-  # ==== API SETUP ====
-  api:
-    build: ./api
-    container_name: project3-api
+  # ==== REDIS SETUP ====
+  redis:
+    image: redis:alpine
+    container_name: project3-redis
     networks:
-        - project3
+        project3:
+          ipv4_address: 10.5.0.6
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_REPLICATION_MODE=master
+    command: redis-server --requirepass P@ssword!
+  # ==== REDIS SETUP END ====
+
+  # ==== API SERVICE SETUP ====
+  api:
+    build: ./service_api
+    container_name: project3-api-service
+    networks:
+      project3:
+        ipv4_address: 10.5.0.7
     ports:
       - 80:8080
-  # ==== API SETUP END ====
+  # ==== API SERVICE SETUP END ====
+
+  # ==== CACHE SERVICE SETUP ====
+  api:
+    build: ./service_cache
+    container_name: project3-cache-service
+    networks:
+      project3:
+        ipv4_address: 10.5.0.8
+    ports:
+      - 80:8080
+  # ==== CACHE SERVICE SETUP END ====
+
+  # ==== EMAIL SERVICE SETUP ====
+  api:
+    build: ./service_email
+    container_name: project3-email-service
+    networks:
+      project3:
+        ipv4_address: 10.5.0.9
+    ports:
+      - 80:8080
+  # ==== EMAIL SERVICE SETUP END ====
+
+  # ==== EMAIL SERVICE SETUP ====
+  api:
+    build: ./service_bank
+    container_name: project3-bank-service1
+    networks:
+      project3:
+        ipv4_address: 10.5.0.10
+    ports:
+      - 80:8080
+  # ==== EMAIL SERVICE SETUP END ====
+
+  # ==== EMAIL SERVICE SETUP ====
+  api:
+    build: ./service_bank
+    container_name: project3-bank-service2
+    networks:
+      project3:
+        ipv4_address: 10.5.0.11
+    ports:
+      - 80:8080
+  # ==== EMAIL SERVICE SETUP END ====
