@@ -114,7 +114,7 @@ services:
       project3:
         ipv4_address: 10.5.0.8
     ports:
-      - 80:8080
+      - 81:8080
   # ==== CACHE SERVICE SETUP END ====
 
   # ==== EMAIL SERVICE SETUP ====
@@ -125,7 +125,7 @@ services:
       project3:
         ipv4_address: 10.5.0.9
     ports:
-      - 80:8080
+      - 82:8080
   # ==== EMAIL SERVICE SETUP END ====
 
   # ==== BANK SERVICE 1 SETUP ====
@@ -136,7 +136,7 @@ services:
       project3:
         ipv4_address: 10.5.0.10
     ports:
-      - 80:8080
+      - 83:8080
   # ==== BANK SERVICE 1 SETUP END ====
 
   # ==== BANK SERVICE 2 SETUP ====
@@ -147,5 +147,5 @@ services:
       project3:
         ipv4_address: 10.5.0.11
     ports:
-      - 80:8080
+      - 84:8080
   # ==== BANK SERVICE 2 SETUP END ====
