@@ -1,3 +1,10 @@
-FROM bash:4.4
+FROM python:3.8
 
-CMD ["bash", "echo 'Cache Service'"]
+RUN apt-get update
+RUN apt-get install -y netcat
+RUN pip install kafka-python
+RUN pip install redis
+
+COPY . .
+
+CMD ["python", "main.py"]
