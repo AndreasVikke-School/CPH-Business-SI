@@ -130,22 +130,41 @@ services:
 
   # ==== BANK SERVICE 1 SETUP ====
   bank1:
-    build: ./service_bank
+    build: ./service_bank_start
     container_name: project3-bank-service1
     networks:
       project3:
         ipv4_address: 10.5.0.10
-    ports:
-      - 83:8080
+    environment:
+      - BANKID=1
+
+  bank1-end:
+    build: ./service_bank_end
+    container_name: project3-bank-service1-end
+    networks:
+      project3:
+        ipv4_address: 10.5.0.11
+    environment:
+      - BANKID=1
+    
   # ==== BANK SERVICE 1 SETUP END ====
 
   # ==== BANK SERVICE 2 SETUP ====
   bank2:
-    build: ./service_bank
+    build: ./service_bank_start
     container_name: project3-bank-service2
     networks:
       project3:
-        ipv4_address: 10.5.0.11
-    ports:
-      - 84:8080
+        ipv4_address: 10.5.0.12
+    environment:
+      - BANKID=2
+
+  bank2-end:
+    build: ./service_bank_end
+    container_name: project3-bank-service2-end
+    networks:
+      project3:
+        ipv4_address: 10.5.0.13
+    environment:
+      - BANKID=2
   # ==== BANK SERVICE 2 SETUP END ====
