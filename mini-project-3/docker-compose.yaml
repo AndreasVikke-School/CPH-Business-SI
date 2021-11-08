@@ -107,7 +107,7 @@ services:
   # ==== API SERVICE SETUP END ====
 
   # ==== CACHE SERVICE SETUP ====
-  api:
+  cache:
     build: ./service_cache
     container_name: project3-cache-service
     networks:
@@ -118,7 +118,7 @@ services:
   # ==== CACHE SERVICE SETUP END ====
 
   # ==== EMAIL SERVICE SETUP ====
-  api:
+  email:
     build: ./service_email
     container_name: project3-email-service
     networks:
@@ -128,8 +128,8 @@ services:
       - 80:8080
   # ==== EMAIL SERVICE SETUP END ====
 
-  # ==== EMAIL SERVICE SETUP ====
-  api:
+  # ==== BANK SERVICE 1 SETUP ====
+  bank1:
     build: ./service_bank
     container_name: project3-bank-service1
     networks:
@@ -137,10 +137,10 @@ services:
         ipv4_address: 10.5.0.10
     ports:
       - 80:8080
-  # ==== EMAIL SERVICE SETUP END ====
+  # ==== BANK SERVICE 1 SETUP END ====
 
-  # ==== EMAIL SERVICE SETUP ====
-  api:
+  # ==== BANK SERVICE 2 SETUP ====
+  bank2:
     build: ./service_bank
     container_name: project3-bank-service2
     networks:
@@ -148,4 +148,4 @@ services:
         ipv4_address: 10.5.0.11
     ports:
       - 80:8080
-  # ==== EMAIL SERVICE SETUP END ====
+  # ==== BANK SERVICE 2 SETUP END ====
