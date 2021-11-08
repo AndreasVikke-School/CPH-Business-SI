@@ -7,4 +7,4 @@ RUN pip install redis
 
 COPY . .
 
-CMD ["python", "main.py"]
+CMD ["python", "-u", "main.py"]
