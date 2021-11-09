@@ -1,0 +1,14 @@
+{
+    "kafka": {
+        "request_topic": "loan-request",
+        "brokers": [
+            "kafka:9092"
+        ]
+    },
+    "rabbitmq": {
+        "loan_queue": "Loan Queue",
+        "broker": "rabbitmq:5672",
+        "username": "admin",
+        "password": "P@ssword!"
+    }
+}

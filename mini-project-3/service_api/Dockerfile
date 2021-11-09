@@ -10,4 +10,4 @@ RUN go mod download
 COPY ./src .
 RUN go build -o /api
 
-CMD [ "/api" ]
+CMD [ "/api", "prod" ]

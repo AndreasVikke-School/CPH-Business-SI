@@ -1,0 +1,14 @@
+{
+    "kafka": {
+        "request_topic": "loan-request",
+        "brokers": [
+            "localhost:9092"
+        ]
+    },
+    "rabbitmq": {
+        "loan_queue": "Loan Queue",
+        "broker": "localhost:5672",
+        "username": "admin",
+        "password": "P@ssword!"
+    }
+}

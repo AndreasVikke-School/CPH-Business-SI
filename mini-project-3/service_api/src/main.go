@@ -1,137 +1,64 @@
 package main
 
 import (
-	"encoding/json"
-	"math/rand"
-	"net/http"
+	"io/ioutil"
+	"log"
+	"os"
 
 	"github.com/gin-gonic/gin"
 	"github.com/segmentio/kafka-go"
 	"github.com/streadway/amqp"
 )
 
-const (
-	topic          = "loan-request"
-	broker1Address = "kafka:9092"
-	queue          = "Loan Queue"
-	rabbitmq       = "amqp://admin:P@ssword!@rabbitmq:5672/"
-)
-
-type request struct {
-	Amount int64 `json:"amount"`
-	Start  int32 `json:"startMonth"`
-	End    int32 `json:"endMonth"`
-}
-
-type lselect struct {
-	UserId   string  `json:"userId"`
-	LoanId   string  `json:"loanId"`
-	BankId   string  `json:"bankId"`
-	Cpr      string  `json:"cpr"`
-	Name     string  `json:"name"`
-	Email    string  `json:"email"`
-	Amount   int     `json:"amount"`
-	MToP     int     `json:"monthToPay"`
-	Interest float32 `json:"interest"`
-	AOP      float32 `json:"aop"`
-}
+var configuration Configuration
 
 func requestLoans(c *gin.Context) {
-	var newRequest request
-
-	if err := c.BindJSON(&newRequest); err != nil {
-		return
-	}
-	jsonRequest, errR := json.Marshal(newRequest)
-	if errR != nil {
-		return
-	}
+	jsonData, err := ioutil.ReadAll(c.Request.Body)
+	failOnError(err, "Failed to get JSON data from body")
 
 	w := kafka.NewWriter(kafka.WriterConfig{
-		Brokers: []string{broker1Address},
-		Topic:   topic,
+		Brokers: configuration.Kafka.Brokers,
+		Topic:   configuration.Kafka.RequestTopic,
 	})
 
-	err := w.WriteMessages(c, kafka.Message{
+	err = w.WriteMessages(c, kafka.Message{
 		Key:   []byte("loan-request"),
-		Value: []byte(jsonRequest),
+		Value: []byte(jsonData),
 	})
-	if err != nil {
-		panic("could not write message " + err.Error())
-	}
+	failOnError(err, "Failed to write message to kafka topic")
 
-	c.IndentedJSON(http.StatusOK, newRequest)
+	c.Data(200, "application/json; charset=utf-8", []byte(jsonData))
 }
 
 func selectLoan(c *gin.Context) {
-	var newSelect lselect
+	jsonData, err := ioutil.ReadAll(c.Request.Body)
+	failOnError(err, "Failed to get JSON data from body")
 
-	if err := c.BindJSON(&newSelect); err != nil {
-		return
-	}
-	jsonSelect, errR := json.Marshal(newSelect)
-	if errR != nil {
-		return
-	}
-
-	conn, err := amqp.Dial(rabbitmq)
-	if err != nil {
-		panic("Failed " + err.Error())
-	}
+	conn, err := amqp.Dial("amqp://" + configuration.Rabbitmq.Username + ":" + configuration.Rabbitmq.Password + "@" + configuration.Rabbitmq.Broker)
+	failOnError(err, "Failed to connect to RabbitMQ")
 	defer conn.Close()
+
 	ch, err := conn.Channel()
-	if err != nil {
-		panic("Failed " + err.Error())
-	}
+	failOnError(err, "Failed to open RabbitMQ channel")
 	defer ch.Close()
 
 	err = ch.Publish(
-		"",           // exchange
-		"Loan Queue", // routing key
-		false,        // mandatory
-		false,        // immediate
+		"",                               // exchange
+		configuration.Rabbitmq.LoanQueue, // routing key
+		false,                            // mandatory
+		false,                            // immediate
 		amqp.Publishing{
 			ContentType: "text/plain",
-			Body:        []byte(jsonSelect),
+			Body:        []byte(jsonData),
 		})
-	if err != nil {
-		panic("Failed " + err.Error())
-	}
+	failOnError(err, "Failed to Publish to RabbitMQ queue")
 
-	c.IndentedJSON(http.StatusOK, newSelect)
+	c.Data(200, "application/json; charset=utf-8", []byte(jsonData))
 }
 
-func test(c *gin.Context) {
-	var newReply lselect
-	newReply.UserId = "1234"
-	newReply.LoanId = "4321"
-	newReply.BankId = "1"
-
-	newReply.Cpr = "1234567890"
-	newReply.Name = "Bo Hansen"
-	newReply.Email = "BoHansen@liderbuks.dk"
-
-	newReply.Amount = rand.Intn(100000) + 1000
-	newReply.MToP = rand.Intn(32) + 4
-	newReply.Interest = rand.Float32()*5 + 5
-	newReply.AOP = rand.Float32()*10 + 5
-
-	jsonReply, errR := json.Marshal(newReply)
-	if errR != nil {
-		return
-	}
-
-	w := kafka.NewWriter(kafka.WriterConfig{
-		Brokers: []string{broker1Address},
-		Topic:   "loan-reply",
-	})
-
-	err := w.WriteMessages(c, kafka.Message{
-		Key:   []byte("loan-reply"),
-		Value: []byte(jsonReply),
-	})
+func failOnError(err error, msg string) {
 	if err != nil {
-		panic("could not write message " + err.Error())
+		log.Fatalf("%s: %s", msg, err)
 	}
 }
 
@@ -140,7 +67,7 @@ func main() {
 	router.POST("/loan/request", requestLoans)
 	router.POST("/loan/select", selectLoan)
 
-	router.GET("/test", test)
+	configuration = getConfig(os.Args[1])
 
 	router.Run("0.0.0.0:8080")
 }
