@@ -10,5 +10,9 @@
         "broker": "localhost:5672",
         "username": "admin",
         "password": "P@ssword!"
+    },
+    "reddit": {
+        "broker": "localhost:6379",
+        "password": "P@ssword!"
     }
 }

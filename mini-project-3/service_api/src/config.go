@@ -16,6 +16,10 @@ type Configuration struct {
 		Username  string `json:"username"`
 		Password  string `json:"password"`
 	} `json:"rabbitmq"`
+	Redis struct {
+		Broker   string `json:"broker"`
+		Password string `json:"password"`
+	} `json:"redis"`
 }
 
 func getConfig(env string) Configuration {
@@ -25,6 +29,6 @@ func getConfig(env string) Configuration {
 	decoder := json.NewDecoder(file)
 	configuration := Configuration{}
 	err := decoder.Decode(&configuration)
-	failOnError(err, "Failed to Decode Env File")
+	go failOnError(err, "Failed to Decode Env File")
 	return configuration
 }

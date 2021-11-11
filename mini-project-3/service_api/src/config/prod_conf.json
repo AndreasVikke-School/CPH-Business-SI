@@ -10,5 +10,9 @@
         "broker": "rabbitmq:5672",
         "username": "admin",
         "password": "P@ssword!"
+    },
+    "redis": {
+        "broker": "redis:6379",
+        "password": "P@ssword!"
     }
 }

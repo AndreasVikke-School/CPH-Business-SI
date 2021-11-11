@@ -24,13 +24,14 @@ while True:
     for tp, messages in msg_pack.items():
         for msg in messages:
             from_kafka = json.loads(msg.value)
-            newReply = {
-                "userId": str(uuid.uuid4()),
-                "bankId": os.environ.get("BANKID"),
-                "loanId": str(uuid.uuid4()),
-                "amount": from_kafka["amount"],
-                "monthToPay": rand.randint(from_kafka["startMonth"], from_kafka["endMonth"]),
-                "interest": rand.uniform(2, 10),
-                "AOP": rand.uniform(10, 35)
-            }
-            kafka_producer.send('loan-reply', value = newReply)
+            for i in range(8):
+                newReply = {
+                    "userId": msg.key.decode("utf-8"),
+                    "bankId": os.environ.get("BANKID"),
+                    "loanId": str(uuid.uuid4()),
+                    "amount": from_kafka["amount"],
+                    "monthToPay": rand.randint(from_kafka["startMonth"], from_kafka["endMonth"]),
+                    "interest": rand.uniform(2, 10),
+                    "AOP": rand.uniform(10, 35)
+                }
+                kafka_producer.send('loan-reply', value = newReply)
