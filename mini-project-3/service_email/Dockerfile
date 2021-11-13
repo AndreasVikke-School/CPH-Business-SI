@@ -1,3 +1,8 @@
-FROM bash:4.4
+FROM python:3.8
 
-CMD ["bash", "echo 'Email Service'"]
+RUN pip install kafka-python
+RUN pip install fpdf
+
+COPY . .
+
+CMD ["python", "-u", "main.py"]
