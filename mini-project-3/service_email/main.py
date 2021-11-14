@@ -6,6 +6,8 @@ from email import encoders
 from email.mime.base import MIMEBase
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import urllib3
+import xmltodict
 import os
 
 kafka_consumer = KafkaConsumer('loan-email',
@@ -58,10 +60,25 @@ AOP = {from_kafka["AOP"]}
 
 """
                 server.sendmail(sender_email, receiver_email, message)
-
+                
+                url = f"http://www.thomas-bayer.com/restnames/name.groovy?name={from_kafka['name']}"
+                http = urllib3.PoolManager()
+                response = http.request('GET', url)
+                data = xmltodict.parse(response.data)
+                try:
+                    prefix = ""
+                    print(data)
+                    print(data['restnames']['nameinfo']['male'])
+                    if(data['restnames']['nameinfo']['male'] == 'true') : prefix = "Mr."
+                    if(data['restnames']['nameinfo']['female'] == 'true') : prefix = "Mrs."
+                    if data['restnames']['nameinfo']['male'] == 'true' and data['restnames']['nameinfo']['female'] == 'true' : prefix = "Mx."
+                except:
+                    print("Invalid name")
+                print(prefix)
                 # create a cell
                 pdf.cell(200, 10, txt = "Contract of loan", ln = 1, align = 'C')
-                pdf.cell(200, 10, txt = f"Get yo shit together, here is the amount: {from_kafka['amount']}", ln = 2, align = 'C')
+                pdf.cell(200, 10, txt = f"Dear {prefix} {from_kafka['name']}", ln = 2, align = 'l')
+                pdf.multi_cell(200, 10, txt = f"This presents the contract of the inquired loan from bank {from_kafka['bankId']} for a total amount of {from_kafka['amount']} ,-. You will have {from_kafka['monthToPay']} months to complete the payment with an interest of {from_kafka['interest']}%.", align = 'l')
                 content = pdf.output(f"contract{from_kafka['loanId']}.pdf", 'S')
                 
                 part = MIMEBase("application", "octet-stream")

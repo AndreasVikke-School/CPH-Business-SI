@@ -127,7 +127,7 @@ services:
     ports:
       - 82:8080
     environment:
-      - EMAILPW= #SET EMAIL PW HERE!!
+      - EMAILPW= #EMAIL PW HERE
   # ==== EMAIL SERVICE SETUP END ====
 
   # ==== BANK SERVICE 1 SETUP ====
