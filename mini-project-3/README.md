@@ -13,8 +13,6 @@
     - [Select loan](#select-loan)
     - [Get loan](#get-loan)
 
-
-
 ## How to run 
 ```
 docker-compose up --build

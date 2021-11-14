@@ -32,25 +32,22 @@ with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
         
         sender_email = "mombankcorp@gmail.com"
 
-        subject = "Contract"
-        body = "This is an email with attachment sent from Python"
-        ms = MIMEMultipart()
-        ms["From"] = sender_email
-        ms["Subject"] = subject
 
         # Add body to email
-        ms.attach(MIMEText(body, "plain"))
         msg_pack = kafka_consumer.poll(timeout_ms=500)
         
         for tp, messages in msg_pack.items():
             for msg in messages:
                 from_kafka = json.loads(msg.value)
-                receiver_email = from_kafka["email"]
-                ms["To"] = receiver_email
-                print(from_kafka)
-                message = f"""\
-Subject: Confirmation letter for loan {from_kafka["loanId"]}
 
+                receiver_email = from_kafka["email"]
+                ms = MIMEMultipart()
+                ms["From"] = sender_email
+                ms["Subject"] = f"Confirmation letter for loan {from_kafka['loanId']}"
+                ms["To"] = receiver_email
+                
+                print(from_kafka)
+                body = f"""\
 Hello {from_kafka["userId"]},
 
 Amount = {from_kafka["amount"]}
@@ -59,8 +56,6 @@ interest = {from_kafka["interest"]}
 AOP = {from_kafka["AOP"]}
 
 """
-                server.sendmail(sender_email, receiver_email, message)
-                
                 url = f"http://www.thomas-bayer.com/restnames/name.groovy?name={from_kafka['name']}"
                 http = urllib3.PoolManager()
                 response = http.request('GET', url)
@@ -86,6 +81,7 @@ AOP = {from_kafka["AOP"]}
                 encoders.encode_base64(part)
                 part.add_header("Content-Disposition", f"attachment; filename= contract{from_kafka['loanId']}.pdf",)
                 ms.attach(part)
+                ms.attach(MIMEText(body, "plain"))
                 text = ms.as_string()
 
                 server.sendmail(sender_email, receiver_email, text)
