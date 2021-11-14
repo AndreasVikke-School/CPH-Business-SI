@@ -2,6 +2,7 @@ import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import { useState } from 'react'
 import { v4 as uuidv4 } from 'uuid';
+import Router from 'next/router'
 
 function Home() {
   return (
@@ -53,6 +54,7 @@ function Form() {
 
     const result = await res
     console.log(result)
+    Router.push('/results')
   }
 
   return (

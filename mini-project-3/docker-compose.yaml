@@ -167,13 +167,13 @@ services:
       - BANKID=2
   # ==== BANK SERVICE 2 SETUP END ====
 
-  # # ==== WEB SERVICE SETUP ====
-  # web:
-  #   build: ./service_web
-  #   container_name: project3-web-service
-  #   networks:
-  #     project3:
-  #       ipv4_address: 10.5.0.14
-  #   ports:
-  #     - 80:8080
-  # # ==== WEB SERVICE SETUP END ====
+  # ==== WEB SERVICE SETUP ====
+  web:
+    build: ./service_web
+    container_name: project3-web-service
+    networks:
+      project3:
+        ipv4_address: 10.5.0.14
+    ports:
+      - 80:3000
+  # ==== WEB SERVICE SETUP END ====

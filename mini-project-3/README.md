@@ -15,9 +15,11 @@
 
 ## How to run 
 ```
-docker-compose up --build
+docker-compose up
 ```
-This command will take some time to complete, be patient.
+This command will take some time to complete, be patient. Wait at least 2 mins
+
+Goto: [localhost:80](localhost:80)
 
 ## The team
 

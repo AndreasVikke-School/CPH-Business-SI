@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react'
+import Router from 'next/router'
+
 const Loans = ({ loans, user }) => {
     console.log(loans)
     return (
@@ -45,7 +47,7 @@ const selectLoan = async event => {
             loanId: event.target.loanId.value,
             userId: event.target.userId.value,
             interest: parseFloat(event.target.interest.value),
-            aop: parseFloat(event.target.aop.value),
+            AOP: parseFloat(event.target.aop.value),
             monthToPay: Number(event.target.monthToPay.value),
             name: event.target.name.value,
             cpr: event.target.cpr.value,
@@ -54,8 +56,8 @@ const selectLoan = async event => {
         headers: {
             'Content-Type': 'application/json'
         },
-        method: 'POST'
+        method: 'POST',
+        mode: "no-cors"
     })
-
-    return { data: loans }
+    Router.push('/thanks')
 }
