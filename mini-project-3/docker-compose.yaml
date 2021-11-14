@@ -122,6 +122,8 @@ services:
     networks:
       project3:
         ipv4_address: 10.5.0.9
+    environment:
+      - EMAILPW= #EMAIL PW HERE
   # ==== EMAIL SERVICE SETUP END ====
 
   # ==== BANK SERVICE 1 SETUP ====
