@@ -49,7 +49,7 @@ with smtplib.SMTP_SSL("smtp.gmail.com", port, context=context) as server:
                 ms["To"] = receiver_email
                 print(from_kafka)
                 message = f"""\
-Subject: Receipt for loan {from_kafka["loanId"]}
+Subject: Confirmation letter for loan {from_kafka["loanId"]}
 
 Hello {from_kafka["userId"]},
 
