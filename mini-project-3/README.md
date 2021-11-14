@@ -62,8 +62,36 @@ base url: [http://localhost:8000](http://localhost:8000)
 ### Request loan
 `/loan/request/:userId`
 
+#### example body
+```
+{
+    "uuid" : 123,
+    "amount" : 10000,
+    "startMonth": 1,
+    "endMonth": 4
+}   
+``` 
+
 ### Select loan
 ``/loan/select/:userId``
+
+#### example body
+```
+{
+    "userId": "89746521",
+    "bankId": "2",
+    "cpr": 123,
+    "loanId": "6598437623",
+    "amount": 10000,
+    "monthToPay": 12,
+    "interest": 5.2,
+    "AOP": 99,
+    "email": "your@email.com",
+    "name": "Kim"
+}  
+``` 
+
+Note that supplying a name that is not in [http://www.thomas-bayer.com/restnames/](http://www.thomas-bayer.com/restnames/) will throw an error.
 
 ### Get loan
 ``/loan/get/:userId``
