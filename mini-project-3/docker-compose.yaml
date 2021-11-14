@@ -103,7 +103,7 @@ services:
       project3:
         ipv4_address: 10.5.0.7
     ports:
-      - 80:8080
+      - 90:8080
   # ==== API SERVICE SETUP END ====
 
   # ==== CACHE SERVICE SETUP ====
@@ -113,8 +113,6 @@ services:
     networks:
       project3:
         ipv4_address: 10.5.0.8
-    ports:
-      - 81:8080
   # ==== CACHE SERVICE SETUP END ====
 
   # ==== EMAIL SERVICE SETUP ====
@@ -124,8 +122,6 @@ services:
     networks:
       project3:
         ipv4_address: 10.5.0.9
-    ports:
-      - 82:8080
   # ==== EMAIL SERVICE SETUP END ====
 
   # ==== BANK SERVICE 1 SETUP ====
@@ -168,3 +164,14 @@ services:
     environment:
       - BANKID=2
   # ==== BANK SERVICE 2 SETUP END ====
+
+  # # ==== WEB SERVICE SETUP ====
+  # web:
+  #   build: ./service_web
+  #   container_name: project3-web-service
+  #   networks:
+  #     project3:
+  #       ipv4_address: 10.5.0.14
+  #   ports:
+  #     - 80:8080
+  # # ==== WEB SERVICE SETUP END ====

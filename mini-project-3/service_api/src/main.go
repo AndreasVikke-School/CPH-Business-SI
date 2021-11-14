@@ -31,6 +31,7 @@ func requestLoans(c *gin.Context) {
 	})
 	failOnError(err, "Failed to write message to kafka topic")
 
+	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 	c.Data(200, "application/json; charset=utf-8", []byte(jsonData))
 }
 
@@ -57,17 +58,8 @@ func selectLoan(c *gin.Context) {
 		})
 	failOnError(err, "Failed to Publish to RabbitMQ queue")
 
+	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 	c.Data(200, "application/json; charset=utf-8", []byte(jsonData))
-}
-
-type Loan struct {
-	UserID     string  `json:"userId"`
-	BankID     string  `json:"bankId"`
-	LoanID     string  `json:"loanId"`
-	Amount     float64 `json:"amount"`
-	MonthToPay int     `json:"monthToPay"`
-	Interest   float64 `json:"interest"`
-	Aop        float64 `json:"aop"`
 }
 
 func getLoans(c *gin.Context) {
@@ -80,15 +72,15 @@ func getLoans(c *gin.Context) {
 		DB:       0,
 	})
 
-	keys, _, err := rdb.Scan(c, 0, userId+":*", 0).Result()
+	keys, cursor, err := rdb.Scan(c, 0, userId+":*", 0).Result()
 	failOnError(err, "Failed to scan Reddis")
 	for _, key := range keys {
 		values, err := rdb.HGetAll(c, key).Result()
 		failOnError(err, "Failed to get by key")
 		amount, _ := strconv.ParseFloat(values["amount"], 32)
-		monthToPay, _ := strconv.Atoi(values["amount"])
-		interest, _ := strconv.ParseFloat(values["amount"], 32)
-		aop, _ := strconv.ParseFloat(values["amount"], 32)
+		monthToPay, _ := strconv.Atoi(values["monthToPay"])
+		interest, _ := strconv.ParseFloat(values["interest"], 32)
+		aop, _ := strconv.ParseFloat(values["AOP"], 32)
 		loans = append(loans, Loan{
 			UserID:     values["userId"],
 			BankID:     values["bankId"],
@@ -100,6 +92,29 @@ func getLoans(c *gin.Context) {
 		})
 	}
 
+	for cursor > 0 {
+		keys, cursor, err = rdb.Scan(c, cursor, userId+":*", 0).Result()
+		failOnError(err, "Failed to scan Reddis")
+		for _, key := range keys {
+			values, err := rdb.HGetAll(c, key).Result()
+			failOnError(err, "Failed to get by key")
+			amount, _ := strconv.ParseFloat(values["amount"], 32)
+			monthToPay, _ := strconv.Atoi(values["monthToPay"])
+			interest, _ := strconv.ParseFloat(values["interest"], 32)
+			aop, _ := strconv.ParseFloat(values["aop"], 32)
+			loans = append(loans, Loan{
+				UserID:     values["userId"],
+				BankID:     values["bankId"],
+				LoanID:     values["loanId"],
+				Amount:     amount,
+				MonthToPay: monthToPay,
+				Interest:   interest,
+				Aop:        aop,
+			})
+		}
+	}
+
+	c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
 	c.IndentedJSON(200, loans)
 }
 
@@ -120,6 +135,5 @@ func main() {
 	} else {
 		configuration = getConfig("dev")
 	}
-
 	router.Run("0.0.0.0:8080")
 }
