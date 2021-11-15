@@ -56,10 +56,14 @@ interest = {from_kafka["interest"]}
 AOP = {from_kafka["AOP"]}
 
 """
-                url = f"http://www.thomas-bayer.com/restnames/name.groovy?name={from_kafka['name']}"
-                http = urllib3.PoolManager()
-                response = http.request('GET', url)
-                data = xmltodict.parse(response.data)
+                try:
+                    url = f"http://www.thomas-bayer.com/restnames/name.groovy?name={from_kafka['name']}"
+                    http = urllib3.PoolManager()
+                    response = http.request('GET', url)
+                    data = xmltodict.parse(response.data)
+                except:
+                    print("Error Name Not in DB")
+                    continue
                 try:
                     prefix = ""
                     print(data)

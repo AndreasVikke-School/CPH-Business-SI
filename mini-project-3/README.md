@@ -19,7 +19,7 @@ docker-compose up
 ```
 This command will take some time to complete, be patient. Wait at least 2 mins
 
-Goto: [localhost:80](localhost:80)
+Goto: [http://localhost](http://localhost)
 
 ## The team
 
@@ -59,7 +59,7 @@ We've split the assignment down into microservices that are written in python, a
 
 ## API & endpoints
 
-base url: [http://localhost:8000](http://localhost:8000)
+base url: [http://localhost:90](http://localhost:90)
 
 ### Request loan
 `/loan/request/:userId`
@@ -67,7 +67,6 @@ base url: [http://localhost:8000](http://localhost:8000)
 #### example body
 ```
 {
-    "uuid" : 123,
     "amount" : 10000,
     "startMonth": 1,
     "endMonth": 4
@@ -80,6 +79,7 @@ base url: [http://localhost:8000](http://localhost:8000)
 #### example body
 ```
 {
+    "uuid" : 123,
     "userId": "89746521",
     "bankId": "2",
     "cpr": 123,

@@ -101,7 +101,7 @@ func getLoans(c *gin.Context) {
 			amount, _ := strconv.ParseFloat(values["amount"], 32)
 			monthToPay, _ := strconv.Atoi(values["monthToPay"])
 			interest, _ := strconv.ParseFloat(values["interest"], 32)
-			aop, _ := strconv.ParseFloat(values["aop"], 32)
+			aop, _ := strconv.ParseFloat(values["AOP"], 32)
 			loans = append(loans, Loan{
 				UserID:     values["userId"],
 				BankID:     values["bankId"],
